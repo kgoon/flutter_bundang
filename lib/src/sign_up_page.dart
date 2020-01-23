@@ -1,5 +1,6 @@
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 
 class SignUpPage extends StatefulWidget {
   SignUpPage({Key key}) : super(key: key);
@@ -89,7 +90,8 @@ class _SignUpPageState extends State<SignUpPage> {
                               decoration: InputDecoration(
                                 labelText: _selectedDate == null
                                     ? 'birthday'
-                                    : _selectedDate.toIso8601String(),
+                                    : DateFormat.yMd('ko')
+                                        .format(_selectedDate),
                                 labelStyle: TextStyle(
                                   fontSize:
                                       MediaQuery.of(context).size.width > 700
