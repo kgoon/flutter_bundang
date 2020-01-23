@@ -1,3 +1,4 @@
+import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 
 class SignUpPage extends StatefulWidget {
@@ -21,12 +22,16 @@ class _SignUpPageState extends State<SignUpPage> {
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: <Widget>[
-                  Text(
-                    'Awesome App',
-                    style: TextStyle(
-                      fontSize: 28.0,
-                      fontWeight: FontWeight.bold,
-                      color: Colors.grey[700],
+                  Container(
+                    width: MediaQuery.of(context).size.width / 2.3,
+                    child: AutoSizeText(
+                      'Awesome App',
+                      maxLines: 1,
+                      style: TextStyle(
+                        fontSize: 70.0,
+                        fontWeight: FontWeight.bold,
+                        color: Colors.grey[700],
+                      ),
                     ),
                   ),
                   SizedBox(
@@ -69,18 +74,19 @@ class _SignUpPageState extends State<SignUpPage> {
                             SizedBox(
                               height: 20.0,
                             ),
-                            Row(
-                              children: <Widget>[
-                                Checkbox(
-                                  value: _ifChecked,
-                                  onChanged: (bool value) {
-                                    setState(() {
-                                      _ifChecked = value;
-                                    });
-                                  },
-                                ),
-                                Text('I accept the terms of service'),
-                              ],
+                            Transform.scale(
+                              scale: 1.04,
+                              child: CheckboxListTile(
+                                value: _ifChecked,
+                                onChanged: (bool value) {
+                                  setState(() {
+                                    _ifChecked = value;
+                                  });
+                                },
+                                title: Text('I accept the terms of service'),
+                                controlAffinity:
+                                    ListTileControlAffinity.leading,
+                              ),
                             ),
                           ],
                         ),
@@ -88,12 +94,21 @@ class _SignUpPageState extends State<SignUpPage> {
                       SizedBox(
                         height: 30.0,
                       ),
-                      RaisedButton(
-                        onPressed: () {},
-                        color: Colors.teal,
-                        textColor: Colors.white,
-                        child: Text(
-                          'Sign Up'.toUpperCase(),
+                      Container(
+                        width: MediaQuery.of(context).size.width / 2.4,
+                        height: MediaQuery.of(context).size.height / 14,
+                        child: RaisedButton(
+                          onPressed: () {},
+                          color: Colors.teal,
+                          textColor: Colors.white,
+                          child: Container(
+                            width: MediaQuery.of(context).size.width / 7.7,
+                            child: AutoSizeText(
+                              'SignUp'.toUpperCase(),
+                              style: TextStyle(fontSize: 60),
+                              maxLines: 1,
+                            ),
+                          ),
                         ),
                       ),
                     ],

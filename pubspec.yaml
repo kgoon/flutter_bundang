@@ -9,7 +9,11 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  device_preview: ^0.2.6
+  device_preview:
+  path_provider_fde:
+    git:
+      url: https://github.com/google/flutter-desktop-embedding/
+      path: plugins/flutter_plugins/path_provider_fde
   auto_size_text: ^2.1.0
   cupertino_icons: ^0.1.2
 
