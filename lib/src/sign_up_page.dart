@@ -120,9 +120,7 @@ class _SignUpPageState extends State<SignUpPage> {
                                           initialDatePickerMode:
                                               DatePickerMode.year)
                                       .then((onValue) {
-                                    if (onValue == null) {
-                                      return;
-                                    } else {
+                                    if (onValue != null) {
                                       setState(() {
                                         _selectedDate = onValue;
                                       });
