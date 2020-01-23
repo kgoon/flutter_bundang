@@ -16,6 +16,13 @@ class _SignUpPageState extends State<SignUpPage> {
         margin: EdgeInsets.all(10.0),
         child: Column(
           children: <Widget>[
+            Text(
+              'Awesome App',
+              style: TextStyle(
+                fontSize: 26.0,
+                fontWeight: FontWeight.bold,
+              ),
+            ),
             Form(
               child: Column(
                 children: <Widget>[
@@ -54,7 +61,15 @@ class _SignUpPageState extends State<SignUpPage> {
                   ),
                 ],
               ),
-            )
+            ),
+            RaisedButton(
+              onPressed: () {},
+              color: Colors.teal,
+              textColor: Colors.white,
+              child: Text(
+                'Sign Up'.toUpperCase(),
+              ),
+            ),
           ],
         ),
       ),
