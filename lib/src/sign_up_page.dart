@@ -45,6 +45,12 @@ class _SignUpPageState extends State<SignUpPage> {
                             TextFormField(
                               decoration: InputDecoration(
                                 labelText: 'email',
+                                labelStyle: TextStyle(
+                                  fontSize:
+                                      MediaQuery.of(context).size.width > 700
+                                          ? 26.0
+                                          : 16.0,
+                                ),
                               ),
                             ),
                             SizedBox(
@@ -53,6 +59,12 @@ class _SignUpPageState extends State<SignUpPage> {
                             TextFormField(
                               decoration: InputDecoration(
                                 labelText: 'password',
+                                labelStyle: TextStyle(
+                                  fontSize:
+                                      MediaQuery.of(context).size.width > 700
+                                          ? 26.0
+                                          : 16.0,
+                                ),
                               ),
                             ),
                             SizedBox(
@@ -61,6 +73,12 @@ class _SignUpPageState extends State<SignUpPage> {
                             TextFormField(
                               decoration: InputDecoration(
                                 labelText: 'password confirm',
+                                labelStyle: TextStyle(
+                                  fontSize:
+                                      MediaQuery.of(context).size.width > 700
+                                          ? 26.0
+                                          : 16.0,
+                                ),
                               ),
                             ),
                             SizedBox(
@@ -69,13 +87,19 @@ class _SignUpPageState extends State<SignUpPage> {
                             TextFormField(
                               decoration: InputDecoration(
                                 labelText: 'birthday',
+                                labelStyle: TextStyle(
+                                  fontSize:
+                                      MediaQuery.of(context).size.width > 700
+                                          ? 26.0
+                                          : 16.0,
+                                ),
                               ),
                             ),
                             SizedBox(
                               height: 20.0,
                             ),
                             Transform.scale(
-                              scale: 1.04,
+                              scale: 1.06,
                               child: CheckboxListTile(
                                 value: _ifChecked,
                                 onChanged: (bool value) {
@@ -83,7 +107,15 @@ class _SignUpPageState extends State<SignUpPage> {
                                     _ifChecked = value;
                                   });
                                 },
-                                title: Text('I accept the terms of service'),
+                                title: Text(
+                                  'I accept the terms of service',
+                                  style: TextStyle(
+                                    fontSize:
+                                        MediaQuery.of(context).size.width > 700
+                                            ? 23.0
+                                            : 14.0,
+                                  ),
+                                ),
                                 controlAffinity:
                                     ListTileControlAffinity.leading,
                               ),
