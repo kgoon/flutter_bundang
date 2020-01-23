@@ -10,6 +10,7 @@ class SignUpPage extends StatefulWidget {
 
 class _SignUpPageState extends State<SignUpPage> {
   bool _ifChecked = false;
+  DateTime _selectedDate;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -86,7 +87,9 @@ class _SignUpPageState extends State<SignUpPage> {
                             ),
                             TextFormField(
                               decoration: InputDecoration(
-                                labelText: 'birthday',
+                                labelText: _selectedDate == null
+                                    ? 'birthday'
+                                    : _selectedDate.toIso8601String(),
                                 labelStyle: TextStyle(
                                   fontSize:
                                       MediaQuery.of(context).size.width > 700
@@ -94,6 +97,28 @@ class _SignUpPageState extends State<SignUpPage> {
                                           : 16.0,
                                 ),
                               ),
+                              onTap: () {
+                                FocusScope.of(context)
+                                    .requestFocus(new FocusNode());
+                                showDatePicker(
+                                        context: context,
+                                        firstDate: DateTime.now()
+                                            .subtract(Duration(days: 36500)),
+                                        initialDate: DateTime.now()
+                                            .subtract(Duration(days: 3650)),
+                                        lastDate: DateTime.now(),
+                                        initialDatePickerMode:
+                                            DatePickerMode.year)
+                                    .then((onValue) {
+                                  if (onValue == null) {
+                                    return;
+                                  } else {
+                                    setState(() {
+                                      _selectedDate = onValue;
+                                    });
+                                  }
+                                });
+                              },
                             ),
                             SizedBox(
                               height: 20.0,
