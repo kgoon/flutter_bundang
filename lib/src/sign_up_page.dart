@@ -102,6 +102,7 @@ class _SignUpPageState extends State<SignUpPage> {
                                     .requestFocus(new FocusNode());
                                 showDatePicker(
                                         context: context,
+                                        locale: const Locale('ko'),
                                         firstDate: DateTime.now()
                                             .subtract(Duration(days: 36500)),
                                         initialDate: DateTime.now()
