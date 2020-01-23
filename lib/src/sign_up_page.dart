@@ -158,7 +158,7 @@ class _SignUpPageState extends State<SignUpPage> {
                         width: MediaQuery.of(context).size.width / 2.4,
                         height: MediaQuery.of(context).size.height / 14,
                         child: RaisedButton(
-                          onPressed: () {},
+                          onPressed: _ifChecked ? () {} : null,
                           color: Colors.teal,
                           textColor: Colors.white,
                           child: Container(
