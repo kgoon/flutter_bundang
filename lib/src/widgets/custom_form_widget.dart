@@ -12,6 +12,8 @@ class CustomFormFieldWidget {
           fontSize: responsiveTextSize(context, 16.0, 26.0),
         ),
       ),
+      autocorrect: false,
+      keyboardType: TextInputType.emailAddress,
     );
   }
 
