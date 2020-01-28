@@ -14,10 +14,15 @@ class _SignupFormState extends State<SignupForm> {
 
   DateFormat _birthDayFormat = new DateFormat('yyyy-MM-dd');
 
+  void _onChangeAgreement(bool value) {
+      setState(() { _agreement = !_agreement; });
+  }
+
   Widget build(BuildContext context) {
   
     return Form(
       child: Column(
+        mainAxisAlignment: MainAxisAlignment.start,
         children: <Widget>[
           TextFormField(
             decoration: const InputDecoration(
@@ -39,28 +44,11 @@ class _SignupFormState extends State<SignupForm> {
           DateFormField(
             dateFormat: _birthDayFormat,
           ),
-          InkWell(
-            onTap: (){
-              setState(() {
-                _agreement = !_agreement;
-              });
-            },
-            child: Padding(
-              padding: EdgeInsets.fromLTRB(0, 10, 0, 10),
-              child: Row(
-                children: <Widget>[
-                  Checkbox(
-                    value: _agreement,
-                    onChanged: (bool newValue) {
-                      setState(() {
-                        _agreement = newValue;
-                      });
-                    },
-                  ),
-                  Expanded(child: Text('I accept the terms of service')),
-                ],
-              ),
-            ),
+          CheckboxListTile(
+            title: const Text('I accept the terms of service'),
+            controlAffinity: ListTileControlAffinity.leading,
+            value: _agreement,
+            onChanged: _onChangeAgreement,
           ),
         ],
       ),
