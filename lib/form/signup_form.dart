@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
+import 'package:tenplus/form/field/date_form_field.dart';
 
 class SignupForm extends StatefulWidget{
   @override
@@ -8,30 +9,13 @@ class SignupForm extends StatefulWidget{
 
 
 class _SignupFormState extends State<SignupForm> {
-  String _birth;
-
+  
   bool _agreement = false;
 
-  TextEditingController _birthController = TextEditingController();
-
-  DateFormat _birthFormat = new DateFormat('yyyy-MM-dd');
-
-  Future _selectDate() async {
-      DateTime picked = await showDatePicker(
-          context: context,
-          initialDate: new DateTime.now(),
-          firstDate: new DateTime(2016),
-          lastDate: new DateTime(2021)
-      );
-      if(picked != null) {
-        setState(() => _birth =  _birthFormat.format(picked));
-      }
-  }
+  DateFormat _birthDayFormat = new DateFormat('yyyy-MM-dd');
 
   Widget build(BuildContext context) {
-    
-    _birthController.text = _birth;
-
+  
     return Form(
       child: Column(
         children: <Widget>[
@@ -52,18 +36,8 @@ class _SignupFormState extends State<SignupForm> {
               hintText: 'password confirm'
             ),
           ),
-          InkWell(
-            onTap: () {
-              _selectDate();   // Call Function that has showDatePicker()
-            },
-            child: IgnorePointer(
-              child: TextFormField(
-                controller: _birthController,
-                decoration: const InputDecoration(
-                  hintText: 'birthday'
-                ),
-              ),
-            ),
+          DateFormField(
+            dateFormat: _birthDayFormat,
           ),
           InkWell(
             onTap: (){
@@ -72,7 +46,7 @@ class _SignupFormState extends State<SignupForm> {
               });
             },
             child: Padding(
-              padding: EdgeInsets.all(10.0),
+              padding: EdgeInsets.fromLTRB(0, 10, 0, 10),
               child: Row(
                 children: <Widget>[
                   Checkbox(
