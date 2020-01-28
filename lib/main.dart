@@ -1,4 +1,4 @@
-import 'package:flutter_thememaker/login_page.dart';
+import 'package:flutter/material.dart';
 import 'login_page.dart';
 
 
@@ -24,6 +24,7 @@ class MyApp extends StatelessWidget {
 class MyHomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return Container();
+    return LoginPage();
   }
 }
+
