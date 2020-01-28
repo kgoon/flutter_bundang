@@ -2,11 +2,16 @@ import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bundang/ui_setting/setColor.dart';
 import 'package:flutter_bundang/ui_setting/setText.dart';
-import 'package:flutter_bundang/widgets/social_button.dart';
 
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
-class LoginPage extends StatelessWidget {
+class SignUpPage extends StatefulWidget {
+  @override
+  _SignUpPageState createState() => _SignUpPageState();
+}
+
+class _SignUpPageState extends State<SignUpPage> {
+  bool isChecked = false;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -21,27 +26,13 @@ class LoginPage extends StatelessWidget {
               Container(
                 padding: EdgeInsets.symmetric(
                   horizontal: 40,
-                  vertical: 60,
+                  vertical: 80,
                 ),
                 child: AutoSizeText(
-                  'Log in',
+                  'Sign Up',
                   maxLines: 1,
                   style: SetText.display4,
                 ),
-              ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceAround,
-                children: <Widget>[
-                  Expanded(
-                    child: socialButton(FontAwesomeIcons.facebookF),
-                  ),
-                  SizedBox(
-                    width: 20,
-                  ),
-                  Expanded(
-                    child: socialButton(FontAwesomeIcons.google),
-                  ),
-                ],
               ),
               Text(
                 'E-mail',
@@ -119,16 +110,110 @@ class LoginPage extends StatelessWidget {
                       Icons.lock,
                       color: mainColor_900,
                     ),
-                    hintText: '패스워드를 입력하세요.',
+                    hintText: '비밀번호',
                   ),
                 ),
               ),
               Container(
-                padding: EdgeInsets.symmetric(horizontal: 8,vertical: 8),
-                alignment: Alignment.centerRight,
-                child: InkWell(
-                  child: Text('비밀번호를 잊어버리셨나요?', style: SetText.subtitle.copyWith(color: fontColor_900),),
+                width: double.infinity,
+                alignment: Alignment.center,
+                height: 60,
+                margin: EdgeInsets.symmetric(vertical: 15),
+                decoration: BoxDecoration(
+                    color: Color(0xFFF1F3F6),
+                    borderRadius: BorderRadius.all(Radius.circular(10)),
+                    boxShadow: [
+                      BoxShadow(
+                          offset: Offset(10, 10),
+                          color: Color(0xFF4D70A6).withOpacity(0.2),
+                          blurRadius: 16),
+                      BoxShadow(
+                          offset: Offset(-10, -10),
+                          color: Color.fromARGB(170, 255, 255, 255),
+                          blurRadius: 10),
+                    ]),
+                child: TextField(
+                  obscureText: true,
+                  cursorColor: mainColor_900,
+                  decoration: InputDecoration(
+                    border: InputBorder.none,
+                    contentPadding: EdgeInsets.only(top: 16),
+                    prefixIcon: Icon(
+                      Icons.lock,
+                      color: mainColor_900,
+                    ),
+                    hintText: '비밀번호 확인',
+                  ),
                 ),
+              ),
+              SizedBox(
+                height: 4,
+              ),
+              Text(
+                'Birthday',
+                style: SetText.subtitle.copyWith(color: Color(0xFF4D70A6)),
+              ),
+              Container(
+                width: double.infinity,
+                alignment: Alignment.center,
+                height: 60,
+                margin: EdgeInsets.symmetric(vertical: 15),
+                decoration: BoxDecoration(
+                    color: Color(0xFFF1F3F6),
+                    borderRadius: BorderRadius.all(Radius.circular(10)),
+                    boxShadow: [
+                      BoxShadow(
+                          offset: Offset(10, 10),
+                          color: Color(0xFF4D70A6).withOpacity(0.2),
+                          blurRadius: 16),
+                      BoxShadow(
+                          offset: Offset(-10, -10),
+                          color: Color.fromARGB(170, 255, 255, 255),
+                          blurRadius: 10),
+                    ]),
+                child: TextField(
+                  obscureText: true,
+                  cursorColor: mainColor_900,
+                  decoration: InputDecoration(
+                    border: InputBorder.none,
+                    contentPadding: EdgeInsets.only(top: 16),
+                    prefixIcon: Icon(
+                      Icons.date_range,
+                      color: mainColor_900,
+                    ),
+                    hintText: '생년월일',
+                  ),
+                ),
+              ),
+              SizedBox(
+                height: 4,
+              ),
+              Row(
+                children: <Widget>[
+                  Checkbox(
+                    activeColor: mainColor_900,
+                    checkColor: mainColor_50,
+                    value: isChecked,
+                    onChanged: (bool value) {
+                      setState(() => isChecked = value);
+                    },
+                  ),
+                  Center(
+                    child: RichText(
+                      text: TextSpan(children: [
+                        TextSpan(
+                          text: '서비스 약관에 동의합니다.',
+                          style: SetText.subtitle,
+                        ),
+                        TextSpan(
+                          text: ' 약관보기',
+                          style:
+                          SetText.subtitle.copyWith(color: fontColor_900),
+                        ),
+                      ]),
+                    ),
+                  ),
+                ],
               ),
               GestureDetector(
                 onTap: () {
@@ -154,31 +239,12 @@ class LoginPage extends StatelessWidget {
                             blurRadius: 10),
                       ]),
                   child: Text(
-                    "로그인",
+                    "가입하기",
                     style: SetText.title,
                   ),
                 ),
               ),
-              InkWell(
-                onTap: () => Navigator.push( // OnPressed 함수에 넣기
-                  context,
-                  MaterialPageRoute(builder: (context) => SignUpPage()),
-                ),
-                child: Center(
-                  child: RichText(
-                    text: TextSpan(children: [
-                      TextSpan(
-                        text: '계정이 없으신가요?',
-                        style: SetText.subtitle,
-                      ),
-                      TextSpan(
-                        text: ' Sign Up',
-                        style: SetText.subtitle.copyWith(color: fontColor_900),
-                      ),
-                    ]),
-                  ),
-                ),
-              ),
+
             ],
           ),
         ),
