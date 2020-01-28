@@ -19,7 +19,10 @@ class SignupPage extends StatelessWidget {
               title,
               style: Theme.of(context).textTheme.display1,
             ),
-            SignupForm()
+            Container(
+              padding: EdgeInsets.fromLTRB(30, 0, 30, 0),
+              child: SignupForm(),
+            ),
           ],
         ),
       ),
