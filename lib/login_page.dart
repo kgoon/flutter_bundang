@@ -1,10 +1,13 @@
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bundang/signup_page.dart';
 import 'package:flutter_bundang/ui_setting/setColor.dart';
 import 'package:flutter_bundang/ui_setting/setText.dart';
 import 'package:flutter_bundang/widgets/social_button.dart';
 
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+
+import 'home_view.dart';
 
 class LoginPage extends StatelessWidget {
   @override
