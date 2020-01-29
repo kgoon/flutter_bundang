@@ -1,11 +1,10 @@
 import 'package:flutter/material.dart';
 
 
-class IMargin extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return SizedBox(
-      height: 4,
-    );
-  }
-}
+const iHeightSmall = SizedBox(height: 4);
+const iHeightMedium = SizedBox(height: 8);
+const iHeightLarge = SizedBox(height: 16);
+
+const iWidthSmall = SizedBox(width: 4);
+const iWidthMedium = SizedBox(width: 8);
+const iWidthLarge = SizedBox(width: 16);

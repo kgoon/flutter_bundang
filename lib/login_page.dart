@@ -7,7 +7,6 @@ import 'package:flutter_bundang/ui_setting/i_set_text.dart';
 import 'package:flutter_bundang/widgets/i_margin.dart';
 import 'package:flutter_bundang/widgets/i_user_button.dart';
 import 'package:flutter_bundang/widgets/i_user_textfield.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'home_view.dart';
 
 class LoginPage extends StatelessWidget {
@@ -41,9 +40,7 @@ class LoginPage extends StatelessWidget {
                       child: iFacebook,
                     ),
                   ),
-                  SizedBox(
-                    width: 20,
-                  ),
+                  iWidthLarge,
                   Expanded(
                     child: IUserButton(child: iGoogle),
                   ),
@@ -51,9 +48,9 @@ class LoginPage extends StatelessWidget {
               ),
               Text(
                 'E-mail',
-                style: ISetText.subtitle.copyWith(color: Color(0xFF4D70A6)),
+                style: ISetText.subTitle.copyWith(color: Color(0xFF4D70A6)),
               ),
-              IMargin(),
+              iHeightSmall,
               IUserTextField(
                 child: TextField(
                   cursorColor: mainColor_900,
@@ -68,12 +65,12 @@ class LoginPage extends StatelessWidget {
                   ),
                 ),
               ),
-              IMargin(),
+              iHeightSmall,
               Text(
                 'Passwords',
-                style: ISetText.subtitle.copyWith(color: Color(0xFF4D70A6)),
+                style: ISetText.subTitle.copyWith(color: Color(0xFF4D70A6)),
               ),
-              IMargin(),
+              iHeightSmall,
               IUserTextField(
                 child: TextField(
                   obscureText: true,
@@ -95,7 +92,7 @@ class LoginPage extends StatelessWidget {
                 child: InkWell(
                   child: Text(
                     '비밀번호를 잊어버리셨나요?',
-                    style: ISetText.subtitle.copyWith(color: fontColor_900),
+                    style: ISetText.subTitle.copyWith(color: fontColor_900),
                   ),
                 ),
               ),
@@ -122,11 +119,11 @@ class LoginPage extends StatelessWidget {
                     text: TextSpan(children: [
                       TextSpan(
                         text: '계정이 없으신가요?',
-                        style: ISetText.subtitle,
+                        style: ISetText.subTitle,
                       ),
                       TextSpan(
                         text: ' Sign Up',
-                        style: ISetText.subtitle.copyWith(color: fontColor_900),
+                        style: ISetText.subTitle.copyWith(color: fontColor_900),
                       ),
                     ]),
                   ),

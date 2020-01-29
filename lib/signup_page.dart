@@ -40,9 +40,9 @@ class _SignUpPageState extends State<SignUpPage> {
               ),
               Text(
                 'E-mail',
-                style: ISetText.subtitle.copyWith(color: Color(0xFF4D70A6)),
+                style: ISetText.subTitle.copyWith(color: Color(0xFF4D70A6)),
               ),
-              IMargin(),
+              iHeightSmall,
               IUserTextField(
                 child: TextField(
                   cursorColor: mainColor_900,
@@ -57,12 +57,12 @@ class _SignUpPageState extends State<SignUpPage> {
                   ),
                 ),
               ),
-              IMargin(),
+              iHeightSmall,
               Text(
                 'Passwords',
-                style: ISetText.subtitle.copyWith(color: Color(0xFF4D70A6)),
+                style: ISetText.subTitle.copyWith(color: Color(0xFF4D70A6)),
               ),
-              IMargin(),
+              iHeightSmall,
               IUserTextField(
                 child: TextField(
                   obscureText: true,
@@ -93,10 +93,10 @@ class _SignUpPageState extends State<SignUpPage> {
                   ),
                 ),
               ),
-              IMargin(),
+              iHeightSmall,
               Text(
                 'Birthday',
-                style: ISetText.subtitle.copyWith(color: Color(0xFF4D70A6)),
+                style: ISetText.subTitle.copyWith(color: Color(0xFF4D70A6)),
               ),
               IUserTextField(
                 child: TextField(
@@ -113,7 +113,7 @@ class _SignUpPageState extends State<SignUpPage> {
                   ),
                 ),
               ),
-              IMargin(),
+              iHeightSmall,
               Row(
                 children: <Widget>[
                   Checkbox(
@@ -129,12 +129,12 @@ class _SignUpPageState extends State<SignUpPage> {
                       text: TextSpan(children: [
                         TextSpan(
                           text: '서비스 약관에 동의합니다.',
-                          style: ISetText.subtitle,
+                          style: ISetText.subTitle,
                         ),
                         TextSpan(
                           text: ' 약관보기',
                           style:
-                              ISetText.subtitle.copyWith(color: fontColor_900),
+                              ISetText.subTitle.copyWith(color: fontColor_900),
                         ),
                       ]),
                     ),
