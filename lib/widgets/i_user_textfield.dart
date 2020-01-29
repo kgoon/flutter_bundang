@@ -5,9 +5,11 @@ import 'package:flutter_bundang/ui_setting/i_set_color.dart';
 
 class IUserTextField extends StatelessWidget {
 
-  final child;
+  final obscureText;
+  final prefixIcon;
+  final hintText;
 
-  IUserTextField({@required this.child});
+  IUserTextField({@required this.prefixIcon, @required this.hintText, @required this.obscureText});
 
   @override
   Widget build(BuildContext context) {
@@ -29,7 +31,16 @@ class IUserTextField extends StatelessWidget {
                 color: Color.fromARGB(170, 255, 255, 255),
                 blurRadius: 10),
           ]),
-      child: child
+      child: TextField(
+        obscureText: obscureText,
+        cursorColor: mainColor_900,
+        decoration: InputDecoration(
+          border: InputBorder.none,
+          contentPadding: EdgeInsets.only(top: 16),
+          prefixIcon: prefixIcon,
+          hintText: hintText,
+        ),
+      ),
     );
   }
 }

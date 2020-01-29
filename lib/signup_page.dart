@@ -40,78 +40,39 @@ class _SignUpPageState extends State<SignUpPage> {
               ),
               Text(
                 'E-mail',
-                style: ISetText.subTitle.copyWith(color: Color(0xFF4D70A6)),
+                style: ISetText.subTitle,
               ),
               iHeightSmall,
               IUserTextField(
-                child: TextField(
-                  cursorColor: mainColor_900,
-                  decoration: InputDecoration(
-                    border: InputBorder.none,
-                    contentPadding: EdgeInsets.only(top: 16),
-                    prefixIcon: Icon(
-                      Icons.email,
-                      color: mainColor_900,
-                    ),
-                    hintText: "E-mail을 입력하세요.",
-                  ),
-                ),
+                obscureText: false,
+                prefixIcon: Icon(Icons.email, color: mainColor_900,),
+                hintText: 'E-mail을 입력해주세요',
               ),
               iHeightSmall,
               Text(
                 'Passwords',
-                style: ISetText.subTitle.copyWith(color: Color(0xFF4D70A6)),
+                style: ISetText.subTitle,
               ),
               iHeightSmall,
               IUserTextField(
-                child: TextField(
-                  obscureText: true,
-                  cursorColor: mainColor_900,
-                  decoration: InputDecoration(
-                    border: InputBorder.none,
-                    contentPadding: EdgeInsets.only(top: 16),
-                    prefixIcon: Icon(
-                      Icons.lock,
-                      color: mainColor_900,
-                    ),
-                    hintText: '비밀번호',
-                  ),
-                ),
+                obscureText: true,
+                prefixIcon: Icon(Icons.lock, color: mainColor_900,),
+                hintText: '비밀번호를 입력해주세요',
               ),
               IUserTextField(
-                child: TextField(
-                  obscureText: true,
-                  cursorColor: mainColor_900,
-                  decoration: InputDecoration(
-                    border: InputBorder.none,
-                    contentPadding: EdgeInsets.only(top: 16),
-                    prefixIcon: Icon(
-                      Icons.lock,
-                      color: mainColor_900,
-                    ),
-                    hintText: '비밀번호 확인',
-                  ),
-                ),
+                obscureText: true,
+                prefixIcon: Icon(Icons.lock, color: mainColor_900,),
+                hintText: '확인을 위해 다시 입력해주세요',
               ),
               iHeightSmall,
               Text(
                 'Birthday',
-                style: ISetText.subTitle.copyWith(color: Color(0xFF4D70A6)),
+                style: ISetText.subTitle,
               ),
               IUserTextField(
-                child: TextField(
-                  obscureText: true,
-                  cursorColor: mainColor_900,
-                  decoration: InputDecoration(
-                    border: InputBorder.none,
-                    contentPadding: EdgeInsets.only(top: 16),
-                    prefixIcon: Icon(
-                      Icons.date_range,
-                      color: mainColor_900,
-                    ),
-                    hintText: '생년월일',
-                  ),
-                ),
+                obscureText: false,
+                prefixIcon: Icon(Icons.date_range, color: mainColor_900,),
+                hintText: '비밀번호를 입력해주세요',
               ),
               iHeightSmall,
               Row(
