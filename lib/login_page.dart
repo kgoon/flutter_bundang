@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bundang/signup_page.dart';
 import 'package:flutter_bundang/ui_setting/setColor.dart';
 import 'package:flutter_bundang/ui_setting/setText.dart';
+import 'package:flutter_bundang/widgets/my_text_field.dart';
 import 'package:flutter_bundang/widgets/social_button.dart';
 
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -53,24 +54,7 @@ class LoginPage extends StatelessWidget {
               SizedBox(
                 height: 4,
               ),
-              Container(
-                width: double.infinity,
-                alignment: Alignment.center,
-                height: 60,
-                margin: EdgeInsets.symmetric(vertical: 15),
-                decoration: BoxDecoration(
-                    color: Color(0xFFF1F3F6),
-                    borderRadius: BorderRadius.all(Radius.circular(10)),
-                    boxShadow: [
-                      BoxShadow(
-                          offset: Offset(10, 10),
-                          color: Color(0xFF4D70A6).withOpacity(0.2),
-                          blurRadius: 16),
-                      BoxShadow(
-                          offset: Offset(-10, -10),
-                          color: Color.fromARGB(170, 255, 255, 255),
-                          blurRadius: 10),
-                    ]),
+              MyTextField(
                 child: TextField(
                   cursorColor: mainColor_900,
                   decoration: InputDecoration(
@@ -94,24 +78,7 @@ class LoginPage extends StatelessWidget {
               SizedBox(
                 height: 4,
               ),
-              Container(
-                width: double.infinity,
-                alignment: Alignment.center,
-                height: 60,
-                margin: EdgeInsets.symmetric(vertical: 15),
-                decoration: BoxDecoration(
-                    color: Color(0xFFF1F3F6),
-                    borderRadius: BorderRadius.all(Radius.circular(10)),
-                    boxShadow: [
-                      BoxShadow(
-                          offset: Offset(10, 10),
-                          color: Color(0xFF4D70A6).withOpacity(0.2),
-                          blurRadius: 16),
-                      BoxShadow(
-                          offset: Offset(-10, -10),
-                          color: Color.fromARGB(170, 255, 255, 255),
-                          blurRadius: 10),
-                    ]),
+              MyTextField(
                 child: TextField(
                   obscureText: true,
                   cursorColor: mainColor_900,
@@ -127,10 +94,13 @@ class LoginPage extends StatelessWidget {
                 ),
               ),
               Container(
-                padding: EdgeInsets.symmetric(horizontal: 8,vertical: 8),
+                padding: EdgeInsets.symmetric(horizontal: 8, vertical: 8),
                 alignment: Alignment.centerRight,
                 child: InkWell(
-                  child: Text('비밀번호를 잊어버리셨나요?', style: SetText.subtitle.copyWith(color: fontColor_900),),
+                  child: Text(
+                    '비밀번호를 잊어버리셨나요?',
+                    style: SetText.subtitle.copyWith(color: fontColor_900),
+                  ),
                 ),
               ),
               GestureDetector(
@@ -163,7 +133,8 @@ class LoginPage extends StatelessWidget {
                 ),
               ),
               InkWell(
-                onTap: () => Navigator.push( // OnPressed 함수에 넣기
+                onTap: () => Navigator.push(
+                  // OnPressed 함수에 넣기
                   context,
                   MaterialPageRoute(builder: (context) => SignUpPage()),
                 ),
