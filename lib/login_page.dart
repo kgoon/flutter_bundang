@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bundang/signup_page.dart';
 import 'package:flutter_bundang/ui_setting/setColor.dart';
 import 'package:flutter_bundang/ui_setting/setText.dart';
+import 'package:flutter_bundang/widgets/fieldmargin.dart';
 import 'package:flutter_bundang/widgets/my_textfield.dart';
 import 'package:flutter_bundang/widgets/social_button.dart';
 
@@ -68,16 +69,12 @@ class LoginPage extends StatelessWidget {
                   ),
                 ),
               ),
-              SizedBox(
-                height: 10,
-              ),
+              FieldMargin(),
               Text(
                 'Passwords',
                 style: SetText.subtitle.copyWith(color: Color(0xFF4D70A6)),
               ),
-              SizedBox(
-                height: 4,
-              ),
+              FieldMargin(),
               MyTextField(
                 child: TextField(
                   obscureText: true,

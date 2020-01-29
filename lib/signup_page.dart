@@ -2,6 +2,7 @@ import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bundang/ui_setting/setColor.dart';
 import 'package:flutter_bundang/ui_setting/setText.dart';
+import 'package:flutter_bundang/widgets/fieldmargin.dart';
 import 'package:flutter_bundang/widgets/my_textfield.dart';
 
 import 'home_view.dart';
@@ -41,9 +42,7 @@ class _SignUpPageState extends State<SignUpPage> {
                 'E-mail',
                 style: SetText.subtitle.copyWith(color: Color(0xFF4D70A6)),
               ),
-              SizedBox(
-                height: 4,
-              ),
+              FieldMargin(),
               MyTextField(
                 child: TextField(
                   cursorColor: mainColor_900,
@@ -58,16 +57,12 @@ class _SignUpPageState extends State<SignUpPage> {
                   ),
                 ),
               ),
-              SizedBox(
-                height: 10,
-              ),
+              FieldMargin(),
               Text(
                 'Passwords',
                 style: SetText.subtitle.copyWith(color: Color(0xFF4D70A6)),
               ),
-              SizedBox(
-                height: 4,
-              ),
+              FieldMargin(),
               MyTextField(
                 child: TextField(
                   obscureText: true,
@@ -98,9 +93,7 @@ class _SignUpPageState extends State<SignUpPage> {
                   ),
                 ),
               ),
-              SizedBox(
-                height: 4,
-              ),
+              FieldMargin(),
               Text(
                 'Birthday',
                 style: SetText.subtitle.copyWith(color: Color(0xFF4D70A6)),
@@ -120,9 +113,7 @@ class _SignUpPageState extends State<SignUpPage> {
                   ),
                 ),
               ),
-              SizedBox(
-                height: 4,
-              ),
+              FieldMargin(),
               Row(
                 children: <Widget>[
                   Checkbox(
