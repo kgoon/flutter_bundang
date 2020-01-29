@@ -33,6 +33,7 @@ class LoginPage extends StatelessWidget {
                   style: ISetText.display4,
                 ),
               ),
+
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: <Widget>[
@@ -47,6 +48,8 @@ class LoginPage extends StatelessWidget {
                   ),
                 ],
               ),
+              iHeightLarge,
+
               Text(
                 'E-mail',
                 style: ISetText.subTitle,
@@ -57,7 +60,7 @@ class LoginPage extends StatelessWidget {
                 prefixIcon: Icon(Icons.email, color: mainColor_900,),
                 hintText: 'E-mail을 입력해주세요',
               ),
-              iHeightSmall,
+              iHeightLarge,
               Text(
                 'Passwords',
                 style: ISetText.subTitle,
@@ -78,6 +81,8 @@ class LoginPage extends StatelessWidget {
                   ),
                 ),
               ),
+              iHeightLarge,
+
               IUserButton(
                   child: Text(
                     '로그인',
@@ -101,11 +106,11 @@ class LoginPage extends StatelessWidget {
                     text: TextSpan(children: [
                       TextSpan(
                         text: '계정이 없으신가요?',
-                        style: ISetText.subTitle,
+                        style: ISetText.subTitle.copyWith(color: mainColor_500),
                       ),
                       TextSpan(
                         text: ' Sign Up',
-                        style: ISetText.subTitle.copyWith(color: fontColor_900),
+                        style: ISetText.subTitle,
                       ),
                     ]),
                   ),

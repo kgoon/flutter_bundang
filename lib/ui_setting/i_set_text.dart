@@ -12,7 +12,7 @@ class ISetText{
   static final headlineSize = 24.0;
   static final subheadSize = 22.0;
   static final titleSize = 20.0; // 기준점
-  static final subtitleSize = 12.0;
+  static final subtitleSize = 14.0;
   static final bodySize = 13.0;
   static final texSectionSize = 12.0;
   static final captionSize = 12.0;
