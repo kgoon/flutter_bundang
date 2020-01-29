@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_bundang/ui_setting/setColor.dart';
 
 
 
@@ -7,7 +6,7 @@ class MyTextField extends StatelessWidget {
 
   final child;
 
-  const MyTextField({@required this.child});
+  MyTextField({@required this.child});
 
   @override
   Widget build(BuildContext context) {

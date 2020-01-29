@@ -7,9 +7,7 @@ import 'package:flutter_bundang/widgets/fieldmargin.dart';
 import 'package:flutter_bundang/widgets/my_button.dart';
 import 'package:flutter_bundang/widgets/my_textfield.dart';
 import 'package:flutter_bundang/widgets/social_button.dart';
-
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-
 import 'home_view.dart';
 
 class LoginPage extends StatelessWidget {
@@ -100,10 +98,10 @@ class LoginPage extends StatelessWidget {
                 ),
               ),
               MyButton(
-                myButtonText: '로그인', pressedButton: Navigator.push( // OnPressed 함수에 넣기
+                myButtonText: '로그인', pressedButton: (){Navigator.push( // OnPressed 함수에 넣기
                     context,
                     MaterialPageRoute(builder: (context) => HomeView()),
-                  ),
+                  );}
               ),
               InkWell(
                 onTap: () => Navigator.push(

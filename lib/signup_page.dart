@@ -142,10 +142,10 @@ class _SignUpPageState extends State<SignUpPage> {
                 ],
               ),
               MyButton(
-                myButtonText: '가입하기', pressedButton: Navigator.push( // OnPressed 함수에 넣기
-                    context,
-                    MaterialPageRoute(builder: (context) => HomeView()),
-                  ),
+                  myButtonText: '가입하기', pressedButton: (){Navigator.push( // OnPressed 함수에 넣기
+                context,
+                MaterialPageRoute(builder: (context) => HomeView()),
+              );}
               ),
             ],
           ),

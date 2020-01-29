@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_bundang/home_view.dart';
 import 'package:flutter_bundang/ui_setting/setText.dart';
 
 class MyButton extends StatelessWidget {
@@ -7,12 +6,11 @@ class MyButton extends StatelessWidget {
   final myButtonText;
   final pressedButton;
 
-  const MyButton({@required this.myButtonText, @required this.pressedButton});
+  MyButton({@required this.myButtonText, this.pressedButton});
 
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: pressedButton,
       child: Container(
         width: double.infinity,
         alignment: Alignment.center,
@@ -36,6 +34,7 @@ class MyButton extends StatelessWidget {
           style: SetText.title,
         ),
       ),
+      onTap: pressedButton,
     );
   }
 }

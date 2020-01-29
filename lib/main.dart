@@ -9,8 +9,6 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-//      locale: DevicePreview.of(context).locale, // <--- Add the locale
-//      builder: DevicePreview.appBuilder, // <--- Add the builder
       title: 'Flutter Demo',
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
