@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 
 
-class FieldMargin extends StatelessWidget {
+class IMargin extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      height: 10,
+      height: 4,
     );
   }
 }

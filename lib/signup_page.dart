@@ -1,10 +1,10 @@
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_bundang/ui_setting/setColor.dart';
-import 'package:flutter_bundang/ui_setting/setText.dart';
-import 'package:flutter_bundang/widgets/fieldmargin.dart';
-import 'package:flutter_bundang/widgets/my_button.dart';
-import 'package:flutter_bundang/widgets/my_textfield.dart';
+import 'package:flutter_bundang/ui_setting/i_set_color.dart';
+import 'package:flutter_bundang/ui_setting/i_set_text.dart';
+import 'package:flutter_bundang/widgets/i_margin.dart';
+import 'package:flutter_bundang/widgets/i_user_button.dart';
+import 'package:flutter_bundang/widgets/i_user_textfield.dart';
 
 import 'home_view.dart';
 
@@ -35,15 +35,15 @@ class _SignUpPageState extends State<SignUpPage> {
                 child: AutoSizeText(
                   'Sign Up',
                   maxLines: 1,
-                  style: SetText.display4,
+                  style: ISetText.display4,
                 ),
               ),
               Text(
                 'E-mail',
-                style: SetText.subtitle.copyWith(color: Color(0xFF4D70A6)),
+                style: ISetText.subtitle.copyWith(color: Color(0xFF4D70A6)),
               ),
-              FieldMargin(),
-              MyTextField(
+              IMargin(),
+              IUserTextField(
                 child: TextField(
                   cursorColor: mainColor_900,
                   decoration: InputDecoration(
@@ -57,13 +57,13 @@ class _SignUpPageState extends State<SignUpPage> {
                   ),
                 ),
               ),
-              FieldMargin(),
+              IMargin(),
               Text(
                 'Passwords',
-                style: SetText.subtitle.copyWith(color: Color(0xFF4D70A6)),
+                style: ISetText.subtitle.copyWith(color: Color(0xFF4D70A6)),
               ),
-              FieldMargin(),
-              MyTextField(
+              IMargin(),
+              IUserTextField(
                 child: TextField(
                   obscureText: true,
                   cursorColor: mainColor_900,
@@ -78,7 +78,7 @@ class _SignUpPageState extends State<SignUpPage> {
                   ),
                 ),
               ),
-              MyTextField(
+              IUserTextField(
                 child: TextField(
                   obscureText: true,
                   cursorColor: mainColor_900,
@@ -93,12 +93,12 @@ class _SignUpPageState extends State<SignUpPage> {
                   ),
                 ),
               ),
-              FieldMargin(),
+              IMargin(),
               Text(
                 'Birthday',
-                style: SetText.subtitle.copyWith(color: Color(0xFF4D70A6)),
+                style: ISetText.subtitle.copyWith(color: Color(0xFF4D70A6)),
               ),
-              MyTextField(
+              IUserTextField(
                 child: TextField(
                   obscureText: true,
                   cursorColor: mainColor_900,
@@ -113,7 +113,7 @@ class _SignUpPageState extends State<SignUpPage> {
                   ),
                 ),
               ),
-              FieldMargin(),
+              IMargin(),
               Row(
                 children: <Widget>[
                   Checkbox(
@@ -129,24 +129,30 @@ class _SignUpPageState extends State<SignUpPage> {
                       text: TextSpan(children: [
                         TextSpan(
                           text: '서비스 약관에 동의합니다.',
-                          style: SetText.subtitle,
+                          style: ISetText.subtitle,
                         ),
                         TextSpan(
                           text: ' 약관보기',
                           style:
-                              SetText.subtitle.copyWith(color: fontColor_900),
+                              ISetText.subtitle.copyWith(color: fontColor_900),
                         ),
                       ]),
                     ),
                   ),
                 ],
               ),
-              MyButton(
-                  myButtonText: '가입하기', pressedButton: (){Navigator.push( // OnPressed 함수에 넣기
-                context,
-                MaterialPageRoute(builder: (context) => HomeView()),
-              );}
-              ),
+              IUserButton(
+                  child: Text(
+                    '가입하기',
+                    style: ISetText.title,
+                  ),
+                  pressedButton: () {
+                    Navigator.push(
+                      // OnPressed 함수에 넣기
+                      context,
+                      MaterialPageRoute(builder: (context) => HomeView()),
+                    );
+                  }),
             ],
           ),
         ),

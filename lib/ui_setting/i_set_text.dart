@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_bundang/ui_setting/setColor.dart';
+import 'package:flutter_bundang/ui_setting/i_set_color.dart';
 
 
 
-class SetText {
+class ISetText {
 
   // 1. 폰트 설정 ---------------------------------------------------------------//
 

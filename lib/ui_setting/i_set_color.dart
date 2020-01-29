@@ -27,7 +27,10 @@ const Color mainColor_700 = Color(0xFF616161);
 const Color mainColor_800 = Color(0xFF424242);
 const Color mainColor_900 = Color(0xFF4D70A6);
 
-// (3) 배너색상 설정
+// (3) 백그라운드 컬러
+const Color backgroundColor = Color(0xFFf1f3f6);
+
+// (4) 배너색상 설정
 const Color bannerRed = Color(0xFFC62828);
 const Color bannerBlue = Color(0xFF1565C0);
 const Color bannerGreen = Color(0xFF00695C);

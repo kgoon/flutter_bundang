@@ -1,12 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bundang/ui_setting/i_set_color.dart';
 
 
 
-class MyTextField extends StatelessWidget {
+class IUserTextField extends StatelessWidget {
 
   final child;
 
-  MyTextField({@required this.child});
+  IUserTextField({@required this.child});
 
   @override
   Widget build(BuildContext context) {
@@ -16,12 +17,12 @@ class MyTextField extends StatelessWidget {
       height: 60,
       margin: EdgeInsets.symmetric(vertical: 15),
       decoration: BoxDecoration(
-          color: Color(0xFFF1F3F6),
+          color: mainColor_50,
           borderRadius: BorderRadius.all(Radius.circular(10)),
           boxShadow: [
             BoxShadow(
                 offset: Offset(10, 10),
-                color: Color(0xFF4D70A6).withOpacity(0.2),
+                color: mainColor_900.withOpacity(0.2),
                 blurRadius: 16),
             BoxShadow(
                 offset: Offset(-10, -10),
