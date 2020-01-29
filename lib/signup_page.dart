@@ -75,7 +75,7 @@ class _SignUpPageState extends State<SignUpPage> {
               IUserTextField(
                 obscureText: false,
                 prefixIcon: Icon(Icons.date_range, color: mainColor_900,),
-                hintText: '비밀번호를 입력해주세요',
+                hintText: '생년월일을 입력해주세요',
               ),
               iHeightLarge,
               Row(
@@ -96,7 +96,7 @@ class _SignUpPageState extends State<SignUpPage> {
                           style: ISetText.subTitle.copyWith(color: fontColor_500),
                         ),
                         TextSpan(
-                          text: ' 약관보기',
+                          text: '  약관보기',
                           style:
                               ISetText.subTitle,
                         ),

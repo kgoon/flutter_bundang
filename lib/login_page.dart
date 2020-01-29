@@ -109,7 +109,7 @@ class LoginPage extends StatelessWidget {
                         style: ISetText.subTitle.copyWith(color: mainColor_500),
                       ),
                       TextSpan(
-                        text: ' Sign Up',
+                        text: '   Sign Up',
                         style: ISetText.subTitle,
                       ),
                     ]),

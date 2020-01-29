@@ -25,7 +25,7 @@ class ISetText{
   static final headline = TextStyle(fontFamily: fontName, fontWeight: FontWeight.bold, fontSize: headlineSize, color: fontColor_900,);
   static final subHeadline = TextStyle(fontFamily: fontName, fontWeight: FontWeight.bold, fontSize: subheadSize, color: fontColor_900,);
   static final title = TextStyle(fontFamily: fontName, fontWeight: FontWeight.bold, fontSize: titleSize, color: fontColor_900,);
-  static final subTitle = TextStyle(fontFamily: fontName, fontWeight: FontWeight.bold, fontSize: subtitleSize, color: fontColor_900,);
+  static final subTitle = TextStyle(fontFamily: fontName, fontWeight: FontWeight.w500, fontSize: subtitleSize, color: fontColor_900,);
   static final body = TextStyle(fontFamily: fontName, fontWeight: FontWeight.bold, fontSize: bodySize, color: fontColor_900,);
   static final textSection = TextStyle(fontFamily: fontName, fontWeight: FontWeight.bold, fontSize: texSectionSize, color: fontColor_500,);
   static final caption = TextStyle(fontFamily: fontName, fontWeight: FontWeight.bold, fontSize: captionSize, color: fontColor_900,);
