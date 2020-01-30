@@ -1,16 +1,16 @@
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_bundang/signup_page.dart';
+import 'package:flutter_bundang/screens/signup_page.dart';
 import 'package:flutter_bundang/ui_setting/i_set_color.dart';
-import 'package:flutter_bundang/ui_setting/i_set_color.dart' as prefix0;
 import 'package:flutter_bundang/ui_setting/i_set_icon.dart';
 import 'package:flutter_bundang/ui_setting/i_set_text.dart';
-import 'package:flutter_bundang/widgets/i_margin.dart';
-import 'package:flutter_bundang/widgets/i_user_button.dart';
-import 'package:flutter_bundang/widgets/i_user_textfield.dart';
+import '../components/i_margin.dart';
+import '../components/i_user_button.dart';
+import '../components/i_user_textfield.dart';
 import 'home_view.dart';
 
 class LoginPage extends StatelessWidget {
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(

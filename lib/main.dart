@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
-import 'login_page.dart';
+import 'package:flutter_bundang/screens/home_view.dart';
+import 'package:flutter_bundang/screens/onboard_page.dart';
+import 'package:flutter_bundang/screens/signup_page.dart';
+import 'screens/login_page.dart';
 
 
 void main() => runApp((MyApp()));
@@ -14,15 +17,16 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: MyHomePage(),
+      initialRoute: '/login',
+      routes: {
+        '/' : (context) => OnBoardPage(),
+        '/login' : (context) => LoginPage(),
+        '/signup' : (context) => SignUpPage(),
+        '/homeview' : (context) => HomeView(),
+      },
     );
   }
 }
 
-class MyHomePage extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return LoginPage();
-  }
-}
+
 
