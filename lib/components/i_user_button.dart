@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_bundang/ui_setting/i_set_color.dart';
+import 'package:flutter_bundang/theme/i_set_color.dart';
 
 class IUserButton extends StatelessWidget {
 
