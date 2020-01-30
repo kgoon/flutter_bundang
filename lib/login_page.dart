@@ -77,7 +77,7 @@ class LoginPage extends StatelessWidget {
                 child: InkWell(
                   child: Text(
                     '비밀번호를 잊어버리셨나요?',
-                    style: ISetText.subTitle,
+                    style: ISetText.subTitle.copyWith(color: mainColor_500),
                   ),
                 ),
               ),
@@ -109,7 +109,7 @@ class LoginPage extends StatelessWidget {
                         style: ISetText.subTitle.copyWith(color: mainColor_500),
                       ),
                       TextSpan(
-                        text: '   Sign Up',
+                        text: '   Sign Up Now',
                         style: ISetText.subTitle,
                       ),
                     ]),

@@ -1,7 +1,6 @@
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bundang/ui_setting/i_set_color.dart';
-import 'package:flutter_bundang/ui_setting/i_set_color.dart' as prefix0;
 import 'package:flutter_bundang/ui_setting/i_set_text.dart';
 import 'package:flutter_bundang/widgets/i_margin.dart';
 import 'package:flutter_bundang/widgets/i_user_button.dart';
@@ -46,7 +45,10 @@ class _SignUpPageState extends State<SignUpPage> {
               iHeightSmall,
               IUserTextField(
                 obscureText: false,
-                prefixIcon: Icon(Icons.email, color: mainColor_900,),
+                prefixIcon: Icon(
+                  Icons.email,
+                  color: mainColor_900,
+                ),
                 hintText: 'E-mail을 입력해주세요',
               ),
               iHeightLarge,
@@ -57,13 +59,19 @@ class _SignUpPageState extends State<SignUpPage> {
               iHeightSmall,
               IUserTextField(
                 obscureText: true,
-                prefixIcon: Icon(Icons.lock, color: mainColor_900,),
+                prefixIcon: Icon(
+                  Icons.lock,
+                  color: mainColor_900,
+                ),
                 hintText: '비밀번호를 입력해주세요',
               ),
               iHeightLarge,
               IUserTextField(
                 obscureText: true,
-                prefixIcon: Icon(Icons.lock, color: mainColor_900,),
+                prefixIcon: Icon(
+                  Icons.lock,
+                  color: mainColor_900,
+                ),
                 hintText: '확인을 위해 다시 입력해주세요',
               ),
               iHeightLarge,
@@ -74,7 +82,10 @@ class _SignUpPageState extends State<SignUpPage> {
               iHeightSmall,
               IUserTextField(
                 obscureText: false,
-                prefixIcon: Icon(Icons.date_range, color: mainColor_900,),
+                prefixIcon: Icon(
+                  Icons.date_range,
+                  color: mainColor_900,
+                ),
                 hintText: '생년월일을 입력해주세요',
               ),
               iHeightLarge,
@@ -93,12 +104,12 @@ class _SignUpPageState extends State<SignUpPage> {
                       text: TextSpan(children: [
                         TextSpan(
                           text: '서비스 약관에 동의합니다.',
-                          style: ISetText.subTitle.copyWith(color: fontColor_500),
+                          style:
+                          ISetText.subTitle.copyWith(color: fontColor_500),
                         ),
                         TextSpan(
                           text: '  약관보기',
-                          style:
-                              ISetText.subTitle,
+                          style: ISetText.subTitle,
                         ),
                       ]),
                     ),
@@ -106,7 +117,6 @@ class _SignUpPageState extends State<SignUpPage> {
                 ],
               ),
               iHeightLarge,
-
               IUserButton(
                   child: Text(
                     '가입하기',

@@ -6,15 +6,19 @@ class IUserTextField extends StatelessWidget {
   final obscureText;
   final prefixIcon;
   final hintText;
+  final onTap;
+
 
   IUserTextField(
-      {@required this.prefixIcon,
+      {this.onTap,
+      @required this.prefixIcon,
       @required this.hintText,
-      @required this.obscureText});
+      @required this.obscureText, controller, keyboardType});
 
   @override
   Widget build(BuildContext context) {
     return TextField(
+      onTap: onTap,
       style: ISetText.subTitle,
       obscureText: obscureText,
       cursorColor: mainColor_900,
@@ -25,7 +29,6 @@ class IUserTextField extends StatelessWidget {
         contentPadding: EdgeInsets.only(top: 16),
         prefixIcon: prefixIcon,
         hintText: hintText,
-
       ),
     );
   }
