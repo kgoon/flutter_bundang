@@ -29,6 +29,7 @@ dependencies:
   firebase_auth: ^0.15.4
   provider: ^4.0.2
   intro_slider: ^2.2.8
+  splashscreen: ^1.2.0
 
 
 dev_dependencies:
