@@ -21,7 +21,7 @@ class _OnBoardPageState extends State<OnBoardPage> {
     slides.add(
       new Slide(
         title: "Excellent",
-        description: "Allow miles wound place the leave had. To sitting subject no improve studied limited",
+        description: "앱 개발중",
         pathImage: "https://seeklogo.net/wp-content/uploads/2017/04/New-Google-Earth-logo.png",
         backgroundColor: mainColor_900,
       ),
@@ -29,7 +29,7 @@ class _OnBoardPageState extends State<OnBoardPage> {
     slides.add(
       new Slide(
         title: "Awesome",
-        description: "Ye indulgence unreserved connection alteration appearance",
+        description: "앱 개발중",
         pathImage: "https://seeklogo.net/wp-content/uploads/2017/04/New-Google-Earth-logo.png",
         backgroundColor: mainColor_900,
       ),
@@ -37,8 +37,7 @@ class _OnBoardPageState extends State<OnBoardPage> {
     slides.add(
       new Slide(
         title: "Perfect",
-        description:
-        "Much evil soon high in hope do view. Out may few northward believing attempted. Yet timed being songs marry one defer men our. Although finished blessing do of",
+        description: "앱 개발중",
         pathImage: "https://seeklogo.net/wp-content/uploads/2017/04/New-Google-Earth-logo.png",
         backgroundColor: mainColor_900,
       ),

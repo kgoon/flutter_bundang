@@ -5,12 +5,11 @@ import 'package:flutter_bundang/theme/i_set_color.dart';
 import 'package:flutter_bundang/theme/i_set_icon.dart';
 import 'package:flutter_bundang/theme/i_set_text.dart';
 import '../components/i_margin.dart';
-import '../components/i_user_button.dart';
+import '../components/i_main_button.dart';
 import '../components/i_user_textfield.dart';
 import 'home_view.dart';
 
 class LoginPage extends StatelessWidget {
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -33,23 +32,25 @@ class LoginPage extends StatelessWidget {
                   style: ISetText.display4,
                 ),
               ),
-
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: <Widget>[
                   Expanded(
                     child: IUserButton(
+                      height: 60.0,
                       child: iFacebook,
                     ),
                   ),
                   iWidthLarge,
                   Expanded(
-                    child: IUserButton(child: iGoogle),
+                    child: IUserButton(
+                      height: 60.0,
+                      child: iGoogle,
+                    ),
                   ),
                 ],
               ),
               iHeightLarge,
-
               Text(
                 'E-mail',
                 style: ISetText.subTitle,
@@ -57,7 +58,10 @@ class LoginPage extends StatelessWidget {
               iHeightSmall,
               IUserTextField(
                 obscureText: false,
-                prefixIcon: Icon(Icons.email, color: mainColor_900,),
+                prefixIcon: Icon(
+                  Icons.email,
+                  color: mainColor_900,
+                ),
                 hintText: 'E-mail을 입력해주세요',
               ),
               iHeightLarge,
@@ -68,7 +72,10 @@ class LoginPage extends StatelessWidget {
               iHeightSmall,
               IUserTextField(
                 obscureText: true,
-                prefixIcon: Icon(Icons.lock, color: mainColor_900,),
+                prefixIcon: Icon(
+                  Icons.lock,
+                  color: mainColor_900,
+                ),
                 hintText: '비밀번호를 입력해주세요',
               ),
               Container(
@@ -82,8 +89,8 @@ class LoginPage extends StatelessWidget {
                 ),
               ),
               iHeightLarge,
-
               IUserButton(
+                height: 60.0,
                   child: Text(
                     '로그인',
                     style: ISetText.title,

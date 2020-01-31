@@ -4,17 +4,19 @@ import 'package:flutter_bundang/theme/i_set_color.dart';
 class IUserButton extends StatelessWidget {
 
   final child;
+  final num width;
+  final num height;
   final pressedButton;
 
-  IUserButton({@required this.child, this.pressedButton});
+  IUserButton({@required this.child, this.pressedButton, this.width, this.height});
 
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
       child: Container(
-        width: double.infinity,
+        width: width,
         alignment: Alignment.center,
-        height: 60,
+        height: height,
         margin: EdgeInsets.symmetric(vertical: 15),
         decoration: BoxDecoration(
             color: mainColor_50,

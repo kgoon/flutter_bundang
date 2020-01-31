@@ -1,14 +1,14 @@
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bundang/screens/signup_contract.dart';
 import 'package:flutter_bundang/theme/i_set_color.dart';
 import 'package:flutter_bundang/theme/i_set_text.dart';
 import '../components/i_margin.dart';
-import '../components/i_user_button.dart';
+import '../components/i_main_button.dart';
 import '../components/i_user_textfield.dart';
 import 'home_view.dart';
 
 class SignUpPage extends StatefulWidget {
-
   @override
   _SignUpPageState createState() => _SignUpPageState();
 }
@@ -99,25 +99,35 @@ class _SignUpPageState extends State<SignUpPage> {
                       setState(() => isChecked = value);
                     },
                   ),
-                  Center(
-                    child: RichText(
-                      text: TextSpan(children: [
-                        TextSpan(
-                          text: '서비스 약관에 동의합니다.',
-                          style:
-                          ISetText.subTitle.copyWith(color: fontColor_500),
+                  InkWell(
+                    onTap: () => Navigator.push(
+                      // OnPressed 함수에 넣기
+                      context,
+                      MaterialPageRoute(builder: (context) => SignUpContract()),
+                    ),
+                    child: Center(
+                      child: RichText(
+                        text: TextSpan(
+                          children: [
+                            TextSpan(
+                              text: '서비스 약관에 동의합니다.',
+                              style: ISetText.subTitle
+                                  .copyWith(color: fontColor_500),
+                            ),
+                            TextSpan(
+                              text: '  약관보기',
+                              style: ISetText.subTitle,
+                            ),
+                          ],
                         ),
-                        TextSpan(
-                          text: '  약관보기',
-                          style: ISetText.subTitle,
-                        ),
-                      ]),
+                      ),
                     ),
                   ),
                 ],
               ),
               iHeightLarge,
               IUserButton(
+                height: 60.0,
                   child: Text(
                     '가입하기',
                     style: ISetText.title,

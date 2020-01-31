@@ -14,7 +14,7 @@ class IUserTextField extends StatelessWidget {
       {this.onTap,
       @required this.prefixIcon,
       @required this.hintText,
-      @required this.obscureText, controller, keyboardType});
+      @required this.obscureText});
 
   @override
   Widget build(BuildContext context) {
