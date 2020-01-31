@@ -44,14 +44,13 @@ class _LoginPageState extends State<LoginPage> with CustomFormFieldWidget {
                   padding: EdgeInsets.only(top: 30.0),
                   child: CustomButtonWidget(
                     backgroundColor: Colors.teal,
-                    title: '로그인',
+                    title: 'SIGN IN',
                     onSubmit: _login,
                   ),
                 ),
                 wrapInputField(
-                  CustomButtonWidget(
-                    backgroundColor: Colors.indigo,
-                    title: '회원가입',
+                  CustomMaterialButton(
+                    title: 'Sign up for account',
                     onSubmit: _pushToSignUp,
                   ),
                 ),

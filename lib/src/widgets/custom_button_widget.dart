@@ -32,3 +32,27 @@ class CustomButtonWidget extends StatelessWidget {
     );
   }
 }
+
+class CustomMaterialButton extends StatelessWidget {
+  final String title;
+  final Function onSubmit;
+
+  CustomMaterialButton({
+    @required this.title,
+    @required this.onSubmit,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return MaterialButton(
+      child: Text(
+        title,
+        style: TextStyle(
+          color: Colors.teal,
+          fontSize: responsiveTextSize(context, 16.0, 24.0),
+        ),
+      ),
+      onPressed: onSubmit,
+    );
+  }
+}

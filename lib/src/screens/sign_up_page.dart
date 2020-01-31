@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bundang/src/screens/login_page.dart';
 import 'package:flutter_bundang/src/widgets/custom_button_widget.dart';
 import 'package:flutter_bundang/src/widgets/custom_form_widget.dart';
 import 'package:flutter_bundang/src/widgets/custom_text_widget.dart';
@@ -16,7 +17,6 @@ class _SignUpPageState extends State<SignUpPage> with CustomFormFieldWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(),
       body: Center(
         child: Padding(
           padding: const EdgeInsets.all(30.0),
@@ -25,7 +25,7 @@ class _SignUpPageState extends State<SignUpPage> with CustomFormFieldWidget {
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: <Widget>[
                 HeadingOneText(
-                  title: 'Sign Up',
+                  title: 'Awesome App',
                 ),
                 Form(
                   child: Column(
@@ -71,6 +71,12 @@ class _SignUpPageState extends State<SignUpPage> with CustomFormFieldWidget {
                     title: 'SIGN UP',
                   ),
                 ),
+                wrapInputField(
+                  CustomMaterialButton(
+                    title: 'Already have account? Sign in',
+                    onSubmit: _pushToLogin,
+                  ),
+                ),
               ],
             ),
           ),
@@ -94,5 +100,13 @@ class _SignUpPageState extends State<SignUpPage> with CustomFormFieldWidget {
     setState(() {
       _ifChecked = value;
     });
+  }
+
+  void _pushToLogin() {
+    Navigator.push(
+        context,
+        MaterialPageRoute(
+          builder: (context) => LoginPage(),
+        ));
   }
 }
