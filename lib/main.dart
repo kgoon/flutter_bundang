@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_bundang/src/sign_up_page.dart';
+import 'package:flutter_bundang/src/screens/sign_up_page.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 
 void main() => runApp(
