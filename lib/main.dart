@@ -1,12 +1,9 @@
-import 'package:device_preview/device_preview.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bundang/src/sign_up_page.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 
 void main() => runApp(
-      DevicePreview(
-        builder: (context) => MyApp(),
-      ),
+      MyApp(),
     );
 
 class MyApp extends StatelessWidget {
@@ -26,8 +23,6 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      locale: DevicePreview.of(context).locale,
-      builder: DevicePreview.appBuilder,
       home: SignUpPage(),
     );
   }

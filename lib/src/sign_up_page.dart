@@ -35,23 +35,14 @@ class _SignUpPageState extends State<SignUpPage> with CustomFormFieldWidget {
                         ),
                         child: emailInputField(context),
                       ),
-                      Padding(
-                        padding: EdgeInsets.only(
-                          top: 8.0,
-                        ),
-                        child: passwordInputField(context),
+                      wrapInputField(
+                        passwordInputField(context),
                       ),
-                      Padding(
-                        padding: EdgeInsets.only(
-                          top: 8.0,
-                        ),
-                        child: passwordInputField(context),
+                      wrapInputField(
+                        passwordInputField(context),
                       ),
-                      Padding(
-                        padding: EdgeInsets.only(
-                          top: 8.0,
-                        ),
-                        child: birthdayInputField(
+                      wrapInputField(
+                        birthdayInputField(
                           context: context,
                           selectedDate: _selectedDate,
                           onClick: this._onClickInputField,
