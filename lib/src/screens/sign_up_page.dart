@@ -16,6 +16,7 @@ class _SignUpPageState extends State<SignUpPage> with CustomFormFieldWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(),
       body: Center(
         child: Padding(
           padding: const EdgeInsets.all(30.0),
@@ -24,7 +25,7 @@ class _SignUpPageState extends State<SignUpPage> with CustomFormFieldWidget {
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: <Widget>[
                 HeadingOneText(
-                  title: 'Awesome App',
+                  title: 'Sign Up',
                 ),
                 Form(
                   child: Column(

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_bundang/src/screens/sign_up_page.dart';
+import 'package:flutter_bundang/src/screens/login_page.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 
 void main() => runApp(
@@ -21,9 +21,9 @@ class MyApp extends StatelessWidget {
       ],
       title: 'Awesome App',
       theme: ThemeData(
-        primarySwatch: Colors.blue,
+        primarySwatch: Colors.indigo,
       ),
-      home: SignUpPage(),
+      home: LoginPage(),
     );
   }
 }
