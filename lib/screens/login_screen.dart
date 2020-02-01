@@ -124,6 +124,14 @@ class _LoginScreenState extends State<LoginScreen> {
                       height: 30.0,
                     ),
                     _buildPasswordTF(),
+                    Container(
+                      alignment: Alignment.centerRight,
+                      child: FlatButton(
+                        onPressed: () => print('Forget Password Button Pressed'),
+                        child: Text('Forgot Password?',
+                        style: kLabelStyle, )
+                        ),
+                    ),
                   ],
                 ),
               ),
