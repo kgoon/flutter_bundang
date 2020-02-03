@@ -1,0 +1,14 @@
+{
+  "@@locale": "ko",
+  "appName": "Awesome App",
+  "@appName": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "home" : "홈",
+  "@home": {
+    "type": "text",
+    "placeholders": {}
+  },
+
+}

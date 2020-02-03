@@ -1,0 +1,13 @@
+{
+  "@@locale": "en",
+  "appName": "Awesome App",
+  "@appName": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "home" : "Home",
+  "@home": {
+    "type": "text",
+    "placeholders": {}
+  }
+}
