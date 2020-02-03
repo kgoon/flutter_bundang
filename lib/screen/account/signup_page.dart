@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:tenplus/form/signup_form.dart';
+import 'package:tenplus/screen/account/signup_form.dart';
 
 class SignupPage extends StatelessWidget {
 

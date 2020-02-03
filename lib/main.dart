@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:tenplus/screen/signup_page.dart';
+import 'package:tenplus/screen/account/signup_page.dart';
 
 void main() => runApp(MyApp());
 
