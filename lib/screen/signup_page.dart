@@ -16,7 +16,8 @@ class SignupPage extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.center,
             children: <Widget>[
-              Padding(padding: EdgeInsets.only(bottom: 40),
+              Padding(
+                padding: EdgeInsets.only(bottom: 40),
                 child: Text(
                   title,
                   style: Theme.of(context).textTheme.display1,

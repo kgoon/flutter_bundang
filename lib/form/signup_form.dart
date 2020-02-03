@@ -9,7 +9,9 @@ class SignupForm extends StatefulWidget{
 
 
 class _SignupFormState extends State<SignupForm> {
-  
+
+  final _gapOfField = 10.0;
+
   bool _agreement = false;
 
   DateFormat _birthDayFormat = new DateFormat('yyyy-MM-dd');
@@ -18,46 +20,32 @@ class _SignupFormState extends State<SignupForm> {
       setState(() { _agreement = !_agreement; });
   }
 
-  Widget _wrapPadding(Widget child){
-    return Padding(
-      padding: EdgeInsets.only(bottom: 10),
-      child: child,
-    );
-  }
-
   Widget build(BuildContext context) {
   
     return Form(
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.start,
+      child: Wrap(
+        runSpacing: _gapOfField,
+        alignment: WrapAlignment.center,
         children: <Widget>[
-          _wrapPadding(
-            TextFormField(
-              decoration: const InputDecoration(
-                hintText: 'email'
-              ),
-            )
+          TextFormField(
+            decoration: const InputDecoration(
+              hintText: 'email'
+            ),
           ),
-          _wrapPadding(
-            TextFormField(
-              obscureText: true,
-              decoration: const InputDecoration(
-                hintText: 'password'
-              ),
-            )
+          TextFormField(
+            obscureText: true,
+            decoration: const InputDecoration(
+              hintText: 'password'
+            ),
           ),
-          _wrapPadding(
-            TextFormField(
-              obscureText: true,
-              decoration: const InputDecoration(
-                hintText: 'password confirm'
-              ),
-            )
+          TextFormField(
+            obscureText: true,
+            decoration: const InputDecoration(
+              hintText: 'password confirm'
+            ),
           ),
-          _wrapPadding(
-            DateFormField(
-              dateFormat: _birthDayFormat,
-            )
+          DateFormField(
+            dateFormat: _birthDayFormat,
           ),
           CheckboxListTile(
             title: const Text('I accept the terms of service'),
@@ -65,6 +53,12 @@ class _SignupFormState extends State<SignupForm> {
             value: _agreement,
             onChanged: _onChangeAgreement,
           ),
+          RaisedButton(
+            onPressed: () => {},
+            color: Theme.of(context).primaryColor,
+            textColor: Theme.of(context).primaryColorLight,
+            child: const Text('Sign up'),
+          )
         ],
       ),
     );
