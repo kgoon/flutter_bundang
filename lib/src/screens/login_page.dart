@@ -1,10 +1,19 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bundang/src/screens/home_page.dart';
 import 'package:flutter_bundang/src/screens/sign_up_page.dart';
+import 'package:flutter_bundang/src/services/auth.dart';
 import 'package:flutter_bundang/src/widgets/custom_button_widget.dart';
 import 'package:flutter_bundang/src/widgets/custom_form_widget.dart';
 import 'package:flutter_bundang/src/widgets/custom_text_widget.dart';
+import 'package:provider/provider.dart';
 
 class LoginPage extends StatelessWidget with CustomFormFieldWidget {
+  final TextEditingController emailController = TextEditingController();
+  final TextEditingController passwordController = TextEditingController();
+
+  String get _email => emailController.text;
+  String get _password => passwordController.text;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -24,11 +33,10 @@ class LoginPage extends StatelessWidget with CustomFormFieldWidget {
                   child: Column(
                     children: <Widget>[
                       Padding(
-                        padding: const EdgeInsets.only(top: 80.0),
-                        child: emailInputField(context),
-                      ),
+                          padding: const EdgeInsets.only(top: 80.0),
+                          child: emailInputField(context, emailController)),
                       wrapInputField(
-                        passwordInputField(context),
+                        passwordInputField(context, passwordController),
                       ),
                     ],
                   ),
@@ -38,7 +46,7 @@ class LoginPage extends StatelessWidget with CustomFormFieldWidget {
                   child: CustomButtonWidget(
                     backgroundColor: Colors.teal,
                     title: 'SIGN IN',
-                    onSubmit: _login,
+                    onSubmit: () => _login(context),
                   ),
                 ),
                 wrapInputField(
@@ -64,5 +72,15 @@ class LoginPage extends StatelessWidget with CustomFormFieldWidget {
     );
   }
 
-  void _login() {}
+  void _login(BuildContext context) async {
+    try {
+      final auth = Provider.of<Auth>(context, listen: false);
+      await auth.signInWithEmail(_email, _password);
+      Navigator.of(context).push(MaterialPageRoute(
+        builder: (context) => HomePage(),
+      ));
+    } catch (e) {
+      print(e.toString());
+    }
+  }
 }

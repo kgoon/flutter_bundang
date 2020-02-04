@@ -39,7 +39,7 @@ class RootPage extends StatelessWidget {
   }
 
   void _pushToLogin(BuildContext context) {
-    Navigator.pushReplacement(
+    Navigator.push(
         context,
         MaterialPageRoute(
           builder: (context) => LoginPage(),
@@ -47,7 +47,7 @@ class RootPage extends StatelessWidget {
   }
 
   void _pushToSignUp(BuildContext context) {
-    Navigator.pushReplacement(
+    Navigator.push(
         context,
         MaterialPageRoute(
           builder: (context) => SignUpPage(),

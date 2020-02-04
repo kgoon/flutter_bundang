@@ -4,8 +4,10 @@ import 'package:intl/intl.dart';
 import 'custom_text_widget.dart';
 
 class CustomFormFieldWidget {
-  Widget emailInputField(BuildContext context) {
-    return TextFormField(
+  Widget emailInputField(
+      BuildContext context, TextEditingController controller) {
+    return TextField(
+      controller: controller,
       decoration: InputDecoration(
         labelText: 'email',
         labelStyle: TextStyle(
@@ -17,8 +19,10 @@ class CustomFormFieldWidget {
     );
   }
 
-  Widget passwordInputField(BuildContext context) {
-    return TextFormField(
+  Widget passwordInputField(
+      BuildContext context, TextEditingController controller) {
+    return TextField(
+      controller: controller,
       decoration: InputDecoration(
         labelText: 'password',
         labelStyle: TextStyle(
@@ -32,7 +36,7 @@ class CustomFormFieldWidget {
 
   Widget birthdayInputField(
       {DateTime selectedDate, BuildContext context, Function onClick}) {
-    return TextFormField(
+    return TextField(
       decoration: InputDecoration(
         labelText: selectedDate == null
             ? 'birthday'
