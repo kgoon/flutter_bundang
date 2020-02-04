@@ -5,8 +5,58 @@
     "type": "text",
     "placeholders": {}
   },
-  "home" : "Home",
+  "home": "Home",
   "@home": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "signUpButton": "Sign up for account",
+  "@signUpButton": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "signInButton": "Already have account? Sign in",
+  "@signInButton": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "email": "email",
+  "@email": {
+    "type": "labelText",
+    "placeholders": {}
+  },
+  "password": "password",
+  "@password": {
+    "type": "labelText",
+    "placeholders": {}
+  },
+  "passwordConfirm": "passwordConfirm",
+  "@passwordConfirm": {
+    "type": "labelText",
+    "placeholders": {}
+  },
+  "birthday": "birthday",
+  "@birthday": {
+    "type": "labelText",
+    "placeholders": {}
+  },
+  "agreeService": "I accept of the terms of service",
+  "@agreeService": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "passwordValid": "Protect your idea, use at least 10 characters",
+  "@passwordValid": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "passwordConfirmValid": "Password is not same",
+  "@passwordConfirmValid": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "emailValid": "Enter Valid Email",
+  "@emailValid": {
     "type": "text",
     "placeholders": {}
   }
