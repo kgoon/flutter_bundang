@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_bundang/src/screens/root_page.dart';
+import 'package:flutter_bundang/src/screens/landing_page.dart';
 import 'package:flutter_bundang/src/services/auth.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:provider/provider.dart';
@@ -34,7 +34,7 @@ class MyApp extends StatelessWidget {
           theme: ThemeData(
             primarySwatch: Colors.indigo,
           ),
-          home: RootPage(),
+          home: LandingPage(),
         ),
       ),
     );
