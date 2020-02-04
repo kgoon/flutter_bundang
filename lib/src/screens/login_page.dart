@@ -4,14 +4,7 @@ import 'package:flutter_bundang/src/widgets/custom_button_widget.dart';
 import 'package:flutter_bundang/src/widgets/custom_form_widget.dart';
 import 'package:flutter_bundang/src/widgets/custom_text_widget.dart';
 
-class LoginPage extends StatefulWidget {
-  LoginPage({Key key}) : super(key: key);
-
-  @override
-  _LoginPageState createState() => _LoginPageState();
-}
-
-class _LoginPageState extends State<LoginPage> with CustomFormFieldWidget {
+class LoginPage extends StatelessWidget with CustomFormFieldWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -51,7 +44,7 @@ class _LoginPageState extends State<LoginPage> with CustomFormFieldWidget {
                 wrapInputField(
                   CustomMaterialButton(
                     title: 'Sign up for account',
-                    onSubmit: _pushToSignUp,
+                    onSubmit: () => _pushToSignUp(context),
                   ),
                 ),
               ],
@@ -62,7 +55,7 @@ class _LoginPageState extends State<LoginPage> with CustomFormFieldWidget {
     );
   }
 
-  void _pushToSignUp() {
+  void _pushToSignUp(BuildContext context) {
     Navigator.push(
       context,
       MaterialPageRoute(

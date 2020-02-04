@@ -13,7 +13,7 @@ class SignUpPage extends StatefulWidget {
 
 class _SignUpPageState extends State<SignUpPage> with CustomFormFieldWidget {
   bool _ifChecked = false;
-  DateTime _selectedDate;
+  // DateTime _selectedDate;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -42,13 +42,13 @@ class _SignUpPageState extends State<SignUpPage> with CustomFormFieldWidget {
                       wrapInputField(
                         passwordInputField(context),
                       ),
-                      wrapInputField(
-                        birthdayInputField(
-                          context: context,
-                          selectedDate: _selectedDate,
-                          onClick: this._onClickInputField,
-                        ),
-                      ),
+                      // wrapInputField(
+                      //   birthdayInputField(
+                      //     context: context,
+                      //     selectedDate: _selectedDate,
+                      //     onClick: this._onClickInputField,
+                      //   ),
+                      // ),
                       Padding(
                         padding: const EdgeInsets.only(top: 20.0),
                         child: Transform.scale(
@@ -85,16 +85,16 @@ class _SignUpPageState extends State<SignUpPage> with CustomFormFieldWidget {
     );
   }
 
-  void _onClickInputField() {
-    FocusScope.of(context).requestFocus(FocusNode());
-    selectDate(context).then((onValue) {
-      if (onValue != null) {
-        setState(() {
-          _selectedDate = onValue;
-        });
-      }
-    });
-  }
+  // void _onClickInputField() {
+  //   FocusScope.of(context).requestFocus(FocusNode());
+  //   selectDate(context).then((onValue) {
+  //     if (onValue != null) {
+  //       setState(() {
+  //         _selectedDate = onValue;
+  //       });
+  //     }
+  //   });
+  // }
 
   void _onClickCheckBoxField(bool value) {
     setState(() {
