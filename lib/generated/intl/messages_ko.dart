@@ -21,7 +21,17 @@ class MessageLookup extends MessageLookupByLibrary {
 
   final messages = _notInlinedMessages(_notInlinedMessages);
   static _notInlinedMessages(_) => <String, Function> {
+    "agreeService" : MessageLookupByLibrary.simpleMessage("서비스 정책에 동의합니다."),
     "appName" : MessageLookupByLibrary.simpleMessage("Awesome App"),
-    "home" : MessageLookupByLibrary.simpleMessage("홈")
+    "birthday" : MessageLookupByLibrary.simpleMessage("생일"),
+    "email" : MessageLookupByLibrary.simpleMessage("이메일"),
+    "emailValid" : MessageLookupByLibrary.simpleMessage("유효한 이메일을 입력하세요."),
+    "home" : MessageLookupByLibrary.simpleMessage("홈"),
+    "password" : MessageLookupByLibrary.simpleMessage("비밀번호"),
+    "passwordConfirm" : MessageLookupByLibrary.simpleMessage("비밀번호 확인"),
+    "passwordConfirmValid" : MessageLookupByLibrary.simpleMessage("비밀번호가 일치하지 않습니다."),
+    "passwordValid" : MessageLookupByLibrary.simpleMessage("보안을 위해 10자리 이상 입력하세요."),
+    "signInButton" : MessageLookupByLibrary.simpleMessage("이미 계정이 있으시나요? 로그인"),
+    "signUpButton" : MessageLookupByLibrary.simpleMessage("회원가")
   };
 }

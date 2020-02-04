@@ -1,12 +1,12 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-class SignUpPage extends StatefulWidget {
+class SignInPage extends StatefulWidget {
   @override
-  State createState() => new SignUpPagetState();
+  State createState() => new SignInPageState();
 }
 
-class SignUpPagetState extends State<SignUpPage> with TickerProviderStateMixin {
+class SignInPageState extends State<SignInPage> with TickerProviderStateMixin {
   TabController _controller;
 
   @override
