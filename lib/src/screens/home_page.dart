@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bundang/src/screens/landing_page.dart';
 import 'package:flutter_bundang/src/services/auth.dart';
 import 'package:flutter_bundang/src/widgets/custom_button_widget.dart';
 import 'package:provider/provider.dart';
@@ -35,6 +36,11 @@ class HomePage extends StatelessWidget {
     try {
       final auth = Provider.of<Auth>(context, listen: false);
       await auth.signOut();
+      Navigator.of(context).pushReplacement(
+        MaterialPageRoute(
+          builder: (context) => LandingPage(),
+        ),
+      );
     } catch (e) {
       print(e.toString());
     }
