@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bundang/src/screens/root_page.dart';
+import 'package:flutter_bundang/src/services/auth.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
+import 'package:provider/provider.dart';
 
 void main() => runApp(
       MyApp(),
@@ -9,21 +11,24 @@ void main() => runApp(
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      localizationsDelegates: [
-        GlobalMaterialLocalizations.delegate,
-        GlobalWidgetsLocalizations.delegate,
-      ],
-      supportedLocales: [
-        const Locale('en'),
-        const Locale('ko'),
-      ],
-      title: 'Awesome App',
-      theme: ThemeData(
-        primarySwatch: Colors.indigo,
+    return Provider<Auth>(
+      create: (context) => Auth(),
+      child: MaterialApp(
+        debugShowCheckedModeBanner: false,
+        localizationsDelegates: [
+          GlobalMaterialLocalizations.delegate,
+          GlobalWidgetsLocalizations.delegate,
+        ],
+        supportedLocales: [
+          const Locale('en'),
+          const Locale('ko'),
+        ],
+        title: 'Awesome App',
+        theme: ThemeData(
+          primarySwatch: Colors.indigo,
+        ),
+        home: RootPage(),
       ),
-      home: RootPage(),
     );
   }
 }
