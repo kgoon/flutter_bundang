@@ -11,23 +11,31 @@ void main() => runApp(
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return Provider<Auth>(
-      create: (context) => Auth(),
-      child: MaterialApp(
-        debugShowCheckedModeBanner: false,
-        localizationsDelegates: [
-          GlobalMaterialLocalizations.delegate,
-          GlobalWidgetsLocalizations.delegate,
-        ],
-        supportedLocales: [
-          const Locale('en'),
-          const Locale('ko'),
-        ],
-        title: 'Awesome App',
-        theme: ThemeData(
-          primarySwatch: Colors.indigo,
+    return GestureDetector(
+      onTap: () {
+        FocusScopeNode currentFocus = FocusScope.of(context);
+        if (!currentFocus.hasPrimaryFocus) {
+          currentFocus.unfocus();
+        }
+      },
+      child: Provider<Auth>(
+        create: (context) => Auth(),
+        child: MaterialApp(
+          debugShowCheckedModeBanner: false,
+          localizationsDelegates: [
+            GlobalMaterialLocalizations.delegate,
+            GlobalWidgetsLocalizations.delegate,
+          ],
+          supportedLocales: [
+            const Locale('en'),
+            const Locale('ko'),
+          ],
+          title: 'Awesome App',
+          theme: ThemeData(
+            primarySwatch: Colors.indigo,
+          ),
+          home: RootPage(),
         ),
-        home: RootPage(),
       ),
     );
   }
