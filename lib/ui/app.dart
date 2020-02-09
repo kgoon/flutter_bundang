@@ -50,29 +50,39 @@ class _MyAppState extends State<MyApp> {
 
   @override
   Widget build(BuildContext context) {
-    return new MaterialApp(
-      onGenerateTitle: (BuildContext context) => Strings.of(context).appName,
-      localizationsDelegates: [
-        const _MyLocalizationsDelegate(),
-        GlobalMaterialLocalizations.delegate,
-        GlobalWidgetsLocalizations.delegate,
-      ],
-      supportedLocales: [
-        const Locale('en', ''),
-        const Locale('ko', ''),
-      ],
-      navigatorObservers: [
-        new FirebaseAnalyticsObserver(analytics: analytics),
-      ],
-      theme: themeData,
-      showPerformanceOverlay: _showPerformanceOverlay,
-      home: new MyHomePage(
-        showPerformanceOverlay: _showPerformanceOverlay,
-        onShowPerformanceOverlayChanged: (bool value) {
-          setState(() => _showPerformanceOverlay = value);
+    return GestureDetector(
+        // 키보드 pop 됐을 때 다른 영역 선택 시 키보드 없애는 로직 적용.
+        onTap: () {
+          FocusScopeNode currentFocus = FocusScope.of(context);
+
+          if (!currentFocus.hasPrimaryFocus) {
+            currentFocus.unfocus();
+          }
         },
-      ),
-    );
+        // 컨텐츠 영역
+        child: MaterialApp(
+            onGenerateTitle: (BuildContext context) =>
+                Strings.of(context).appName,
+            localizationsDelegates: [
+              const _MyLocalizationsDelegate(),
+              GlobalMaterialLocalizations.delegate,
+              GlobalWidgetsLocalizations.delegate,
+            ],
+            supportedLocales: [
+              const Locale('en', ''),
+              const Locale('ko', ''),
+            ],
+            navigatorObservers: [
+              new FirebaseAnalyticsObserver(analytics: analytics),
+            ],
+            theme: themeData,
+            showPerformanceOverlay: _showPerformanceOverlay,
+            home: new MyHomePage(
+              showPerformanceOverlay: _showPerformanceOverlay,
+              onShowPerformanceOverlayChanged: (bool value) {
+                setState(() => _showPerformanceOverlay = value);
+              },
+            )));
   }
 }
 

@@ -55,17 +55,19 @@ class SignUpPageState extends State<SignUpPage> with TickerProviderStateMixin {
 
   Widget _SignUpForm() {
     ThemeData themeData = Theme.of(context);
-
     final EdgeInsets textFieldPadding = EdgeInsets.only(top: 10, bottom: 10);
 
-    return new Column(
+    return Column(
       children: <Widget>[
         Padding(
           padding: textFieldPadding,
           child: TextFormField(
             decoration: const InputDecoration(labelText: 'Email'),
             keyboardType: TextInputType.emailAddress,
-            validator: validEmail,
+            validator: checkEmailValid,
+            onSaved: (String val) {
+              email = val;
+            },
           ),
         ),
         Padding(
@@ -85,13 +87,18 @@ class SignUpPageState extends State<SignUpPage> with TickerProviderStateMixin {
             decoration: const InputDecoration(labelText: 'Password confirm'),
             keyboardType: TextInputType.text,
             validator: validPasswordConfirm,
+            onSaved: (String val) {
+              passwordConfirm = val;
+            },
           ),
         ),
         Padding(
           padding: textFieldPadding,
           child: TextFormField(
             decoration: const InputDecoration(labelText: 'birthday'),
-//          keyboardType: TextInputType.,
+            onSaved: (String val) {
+              birthday = val;
+            },
           ),
         ),
         Row(
@@ -108,7 +115,7 @@ class SignUpPageState extends State<SignUpPage> with TickerProviderStateMixin {
           ],
         ),
         RaisedButton(
-          onPressed: _validateInputs(),
+          onPressed: _checkInputValidation(),
           textColor: Colors.white,
           color: themeData.primaryColor,
           child: Text(Strings.of(context).signUp),
@@ -118,7 +125,7 @@ class SignUpPageState extends State<SignUpPage> with TickerProviderStateMixin {
   }
 
   // 참고 : https://github.com/nitishk72/flutter_form_validation/blob/master/lib/main.dart
-  String validEmail(String value) {
+  String checkEmailValid(String value) {
     Pattern pattern =
         r'^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$';
     RegExp regex = new RegExp(pattern);
@@ -142,7 +149,7 @@ class SignUpPageState extends State<SignUpPage> with TickerProviderStateMixin {
       return null;
   }
 
-  _validateInputs() {
+  _checkInputValidation() {
 //  if (formKey.currentState.validate()) {
 //    // If all data are correct then save data to out variables
 //    formKey.currentState.save();
