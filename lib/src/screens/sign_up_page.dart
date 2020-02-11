@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bundang/src/models/sign_in_model.dart';
 import 'package:flutter_bundang/src/screens/home_page.dart';
 import 'package:flutter_bundang/src/screens/login_page.dart';
 import 'package:flutter_bundang/src/services/auth.dart';
@@ -8,7 +9,23 @@ import 'package:flutter_bundang/src/widgets/custom_text_widget.dart';
 import 'package:provider/provider.dart';
 
 class SignUpPage extends StatefulWidget {
-  SignUpPage({Key key}) : super(key: key);
+  final SignInModel model;
+
+  SignUpPage({@required this.model});
+
+  static Widget create(BuildContext context) {
+    final Auth auth = Provider.of<Auth>(context, listen: false);
+    return ChangeNotifierProvider<SignInModel>(
+      create: (context) => SignInModel(
+        auth: auth,
+      ),
+      child: Consumer<SignInModel>(
+        builder: (context, model, _) => SignUpPage(
+          model: model,
+        ),
+      ),
+    );
+  }
 
   @override
   _SignUpPageState createState() => _SignUpPageState();
@@ -21,8 +38,7 @@ class _SignUpPageState extends State<SignUpPage> with CustomFormFieldWidget {
   final TextEditingController emailController = TextEditingController();
   final TextEditingController passwordController = TextEditingController();
 
-  String get _email => emailController.text;
-  String get _password => passwordController.text;
+  SignInModel get model => widget.model;
 
   @override
   Widget build(BuildContext context) {
@@ -43,10 +59,10 @@ class _SignUpPageState extends State<SignUpPage> with CustomFormFieldWidget {
                       padding: EdgeInsets.only(
                         top: 80.0,
                       ),
-                      child: emailInputField(context, emailController),
+                      child: emailInputField(context, emailController, model),
                     ),
                     wrapInputField(
-                      passwordInputField(context, passwordController),
+                      passwordInputField(context, passwordController, model),
                     ),
                     // wrapInputField(
                     //   passwordInputField(context),
@@ -114,19 +130,25 @@ class _SignUpPageState extends State<SignUpPage> with CustomFormFieldWidget {
     Navigator.push(
         context,
         MaterialPageRoute(
-          builder: (context) => LoginPage(),
+          builder: (context) => LoginPage.create(context),
         ));
   }
 
-  void _submit() async {
+  Future<void> _submit() async {
     try {
-      final auth = Provider.of<Auth>(context, listen: false);
-      await auth.createUserWithEmail(_email, _password);
+      await model.submit();
       Navigator.of(context).push(MaterialPageRoute(
         builder: (context) => HomePage(),
       ));
     } catch (e) {
       e.toString();
     }
+  }
+
+  @override
+  void dispose() {
+    emailController.dispose();
+    passwordController.dispose();
+    super.dispose();
   }
 }

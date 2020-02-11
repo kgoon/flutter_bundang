@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bundang/src/models/sign_in_model.dart';
 import 'package:intl/intl.dart';
 
 import 'custom_text_widget.dart';
 
 class CustomFormFieldWidget {
-  Widget emailInputField(
-      BuildContext context, TextEditingController controller) {
+  Widget emailInputField(BuildContext context, TextEditingController controller,
+      SignInModel model) {
     return TextField(
       controller: controller,
       decoration: InputDecoration(
@@ -16,11 +17,12 @@ class CustomFormFieldWidget {
       ),
       autocorrect: false,
       keyboardType: TextInputType.emailAddress,
+      onChanged: model.updateEmail,
     );
   }
 
-  Widget passwordInputField(
-      BuildContext context, TextEditingController controller) {
+  Widget passwordInputField(BuildContext context,
+      TextEditingController controller, SignInModel model) {
     return TextField(
       controller: controller,
       decoration: InputDecoration(
@@ -31,6 +33,7 @@ class CustomFormFieldWidget {
       ),
       autocorrect: false,
       obscureText: true,
+      onChanged: model.updatePassword,
     );
   }
 

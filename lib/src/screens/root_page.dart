@@ -42,7 +42,7 @@ class RootPage extends StatelessWidget {
     Navigator.push(
         context,
         MaterialPageRoute(
-          builder: (context) => LoginPage(),
+          builder: (context) => LoginPage.create(context),
         ));
   }
 
@@ -50,7 +50,7 @@ class RootPage extends StatelessWidget {
     Navigator.push(
         context,
         MaterialPageRoute(
-          builder: (context) => SignUpPage(),
+          builder: (context) => SignUpPage.create(context),
         ));
   }
 }
