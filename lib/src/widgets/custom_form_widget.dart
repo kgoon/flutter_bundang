@@ -10,11 +10,11 @@ class CustomFormFieldWidget {
     return TextField(
       controller: controller,
       decoration: InputDecoration(
-        labelText: 'email',
-        labelStyle: TextStyle(
-          fontSize: responsiveTextSize(context, 16.0, 26.0),
-        ),
-      ),
+          labelText: 'email',
+          labelStyle: TextStyle(
+            fontSize: responsiveTextSize(context, 16.0, 26.0),
+          ),
+          errorText: model.emailErrorText),
       autocorrect: false,
       keyboardType: TextInputType.emailAddress,
       onChanged: model.updateEmail,
@@ -30,6 +30,7 @@ class CustomFormFieldWidget {
         labelStyle: TextStyle(
           fontSize: responsiveTextSize(context, 16.0, 26.0),
         ),
+        errorText: model.passwordErrorText,
       ),
       autocorrect: false,
       obscureText: true,

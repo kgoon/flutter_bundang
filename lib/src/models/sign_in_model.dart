@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bundang/src/services/auth.dart';
+import 'package:flutter_bundang/src/widgets/validators.dart';
 
-class SignInModel with ChangeNotifier {
+class SignInModel with ChangeNotifier, UserValidators {
   final Auth auth;
   String email;
   String password;
@@ -41,7 +42,27 @@ class SignInModel with ChangeNotifier {
     }
   }
 
-  void ChangeCheckBoxValue(bool value) {
+  void changeCheckBoxValue(bool value) {
     updateWith(isChecked: value);
+  }
+
+  String get emailErrorText {
+    if (!emailNotEmpty.isValid(email)) {
+      return emailNotEmptyString;
+    } else if (!emailFormat.isValid(email)) {
+      return emailFormatString;
+    } else {
+      return null;
+    }
+  }
+
+  String get passwordErrorText {
+    if (!passwordNotEmpty.isValid(password)) {
+      return passwordNotEmptyString;
+    } else if (!passwordLength.isValid(password)) {
+      return passwordLengthString;
+    } else {
+      return null;
+    }
   }
 }

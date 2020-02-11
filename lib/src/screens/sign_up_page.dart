@@ -80,7 +80,7 @@ class _SignUpPageState extends State<SignUpPage> with CustomFormFieldWidget {
                         child: checkBoxField(
                           context: context,
                           ifChecked: model.isChecked,
-                          onChecked: model.ChangeCheckBoxValue,
+                          onChecked: model.changeCheckBoxValue,
                         ),
                       ),
                     ),
