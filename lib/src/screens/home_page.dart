@@ -29,6 +29,12 @@ class HomePage extends StatelessWidget {
           ],
         ),
       ),
+      body: Center(
+        child: CustomMaterialButton(
+          onSubmit: () => _signOut(context),
+          title: 'LogOut',
+        ),
+      ),
     );
   }
 
