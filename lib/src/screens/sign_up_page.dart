@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bundang/src/models/sign_in_model.dart';
-import 'package:flutter_bundang/src/screens/home_page.dart';
 import 'package:flutter_bundang/src/screens/landing_page.dart';
 import 'package:flutter_bundang/src/screens/login_page.dart';
 import 'package:flutter_bundang/src/services/auth.dart';
@@ -33,7 +32,6 @@ class SignUpPage extends StatefulWidget {
 }
 
 class _SignUpPageState extends State<SignUpPage> with CustomFormFieldWidget {
-  bool _ifChecked = false;
   // DateTime _selectedDate;
 
   final TextEditingController emailController = TextEditingController();
@@ -81,8 +79,8 @@ class _SignUpPageState extends State<SignUpPage> with CustomFormFieldWidget {
                         scale: 1.06,
                         child: checkBoxField(
                           context: context,
-                          ifChecked: _ifChecked,
-                          onChecked: this._onClickCheckBoxField,
+                          ifChecked: model.isChecked,
+                          onChecked: model.ChangeCheckBoxValue,
                         ),
                       ),
                     ),
@@ -91,7 +89,7 @@ class _SignUpPageState extends State<SignUpPage> with CustomFormFieldWidget {
                 Padding(
                   padding: const EdgeInsets.only(top: 30.0),
                   child: CustomButtonWidget(
-                    onSubmit: _ifChecked ? _submit : null,
+                    onSubmit: model.isChecked ? _submit : null,
                     backgroundColor: Colors.teal,
                     title: 'SIGN UP',
                   ),
@@ -120,12 +118,6 @@ class _SignUpPageState extends State<SignUpPage> with CustomFormFieldWidget {
   //     }
   //   });
   // }
-
-  void _onClickCheckBoxField(bool value) {
-    setState(() {
-      _ifChecked = value;
-    });
-  }
 
   void _pushToLogin() {
     Navigator.push(

@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bundang/src/models/sign_in_model.dart';
-import 'package:flutter_bundang/src/screens/home_page.dart';
 import 'package:flutter_bundang/src/screens/landing_page.dart';
 import 'package:flutter_bundang/src/screens/sign_up_page.dart';
 import 'package:flutter_bundang/src/services/auth.dart';

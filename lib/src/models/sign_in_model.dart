@@ -5,20 +5,23 @@ class SignInModel with ChangeNotifier {
   final Auth auth;
   String email;
   String password;
+  bool isChecked;
 
   SignInModel({
     @required this.auth,
     this.email = '',
     this.password = '',
+    this.isChecked = false,
   });
 
   void updateEmail(String email) => updateWith(email: email);
 
   void updatePassword(String password) => updateWith(password: password);
 
-  void updateWith({String email, String password}) {
+  void updateWith({String email, String password, bool isChecked}) {
     this.email = email ?? this.email;
     this.password = password ?? this.password;
+    this.isChecked = isChecked ?? this.isChecked;
     notifyListeners();
   }
 
@@ -36,5 +39,9 @@ class SignInModel with ChangeNotifier {
     } catch (e) {
       rethrow;
     }
+  }
+
+  void ChangeCheckBoxValue(bool value) {
+    updateWith(isChecked: value);
   }
 }
