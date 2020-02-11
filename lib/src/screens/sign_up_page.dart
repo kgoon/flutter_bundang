@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_bundang/src/models/sign_in_model.dart';
 import 'package:flutter_bundang/src/screens/landing_page.dart';
 import 'package:flutter_bundang/src/screens/login_page.dart';
@@ -6,6 +7,7 @@ import 'package:flutter_bundang/src/services/auth.dart';
 import 'package:flutter_bundang/src/widgets/custom_button_widget.dart';
 import 'package:flutter_bundang/src/widgets/custom_form_widget.dart';
 import 'package:flutter_bundang/src/widgets/custom_text_widget.dart';
+import 'package:flutter_bundang/src/widgets/platform_exception_alert_dialog.dart';
 import 'package:provider/provider.dart';
 
 class SignUpPage extends StatefulWidget {
@@ -133,8 +135,12 @@ class _SignUpPageState extends State<SignUpPage> with CustomFormFieldWidget {
       Navigator.of(context).pushReplacement(MaterialPageRoute(
         builder: (context) => LandingPage(),
       ));
-    } catch (e) {
-      e.toString();
+    } on PlatformException catch (e) {
+      PlatformExceptionAlertDialog(
+        title: '에러!',
+        e: e,
+        defaultActionText: '확인',
+      ).show(context);
     }
   }
 
