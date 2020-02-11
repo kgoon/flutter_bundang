@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bundang/src/models/sign_in_model.dart';
 import 'package:flutter_bundang/src/screens/home_page.dart';
+import 'package:flutter_bundang/src/screens/landing_page.dart';
 import 'package:flutter_bundang/src/screens/sign_up_page.dart';
 import 'package:flutter_bundang/src/services/auth.dart';
 import 'package:flutter_bundang/src/widgets/custom_button_widget.dart';
@@ -99,8 +100,8 @@ class _LoginPageState extends State<LoginPage> with CustomFormFieldWidget {
   void _login(BuildContext context) async {
     try {
       await model.login();
-      Navigator.of(context).push(MaterialPageRoute(
-        builder: (context) => HomePage(),
+      Navigator.of(context).pushReplacement(MaterialPageRoute(
+        builder: (context) => LandingPage(),
       ));
     } catch (e) {
       print(e.toString());
