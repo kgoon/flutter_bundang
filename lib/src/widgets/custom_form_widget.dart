@@ -1,38 +1,46 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bundang/src/models/sign_in_model.dart';
 import 'package:intl/intl.dart';
 
 import 'custom_text_widget.dart';
 
 class CustomFormFieldWidget {
-  Widget emailInputField(BuildContext context) {
-    return TextFormField(
+  Widget emailInputField(BuildContext context, TextEditingController controller,
+      SignInModel model) {
+    return TextField(
+      controller: controller,
       decoration: InputDecoration(
-        labelText: 'email',
-        labelStyle: TextStyle(
-          fontSize: responsiveTextSize(context, 16.0, 26.0),
-        ),
-      ),
+          labelText: 'email',
+          labelStyle: TextStyle(
+            fontSize: responsiveTextSize(context, 16.0, 26.0),
+          ),
+          errorText: model.emailErrorText),
       autocorrect: false,
       keyboardType: TextInputType.emailAddress,
+      onChanged: model.updateEmail,
     );
   }
 
-  Widget passwordInputField(BuildContext context) {
-    return TextFormField(
+  Widget passwordInputField(BuildContext context,
+      TextEditingController controller, SignInModel model) {
+    return TextField(
+      controller: controller,
       decoration: InputDecoration(
         labelText: 'password',
         labelStyle: TextStyle(
           fontSize: responsiveTextSize(context, 16.0, 26.0),
         ),
+        errorText: model.passwordErrorText,
       ),
       autocorrect: false,
       obscureText: true,
+      onChanged: model.updatePassword,
     );
   }
 
   Widget birthdayInputField(
       {DateTime selectedDate, BuildContext context, Function onClick}) {
-    return TextFormField(
+    return TextField(
       decoration: InputDecoration(
         labelText: selectedDate == null
             ? 'birthday'
@@ -67,6 +75,13 @@ class CustomFormFieldWidget {
         ),
       ),
       controlAffinity: ListTileControlAffinity.leading,
+    );
+  }
+
+  Widget wrapInputField(Widget child) {
+    return Padding(
+      padding: EdgeInsets.only(top: 8.0),
+      child: child,
     );
   }
 }
