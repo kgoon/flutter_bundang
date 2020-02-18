@@ -1,5 +1,8 @@
+import 'dart:async';
+
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:http/http.dart';
+import 'package:http/http.dart' as http;
+import 'dart:convert';
 
 class User {
   final String uid;
@@ -55,20 +58,60 @@ class AuthFromFireBase implements AuthBase {
 class AuthFromCustom implements AuthBase {
   @override
   Future<User> createUserWithEmail(String email, String password,
-      {String birthday}) {
-    // TODO: implement createUserWithEmail
-    return null;
+      {String birthday}) async {
+    Map data = {
+      'email': email,
+      'password': password,
+      'birth': birthday,
+    };
+    var jsonData = {};
+    var response = await http.post(
+      'https://flutter-study-api.appspot.com/api/user/register',
+      body: data,
+    );
+    if (response.statusCode == 200) {
+      jsonData = json.decode(response.body);
+      print(_fromCustom(jsonData['token']).uid);
+    } else {
+      throw ("some arbitrary error");
+    }
+    return _fromCustom(jsonData['token']);
   }
 
   @override
-  Future<User> signInWithEmail(String email, String password) {
-    // TODO: implement signInWithEmail
-    return null;
+  Future<User> signInWithEmail(String email, String password) async {
+    Map data = {
+      'email': email,
+      'password': password,
+    };
+    var jsonData = {};
+    var response = await http.post(
+      'https://flutter-study-api.appspot.com/api/user/login',
+      body: data,
+    );
+    if (response.statusCode == 200) {
+      jsonData = json.decode(response.body);
+      print(_fromCustom(jsonData['token']).uid);
+    } else {
+      throw ("some arbitrary error");
+    }
+    return _fromCustom(jsonData['token']);
   }
 
   @override
   Future<void> signOut() {
     // TODO: implement signOut
+    return null;
+  }
+
+  User _fromCustom(String token) {
+    if (token == null) {
+      return null;
+    }
+    return User(uid: token);
+  }
+
+  Stream<User> get onAuthStateChanged {
     return null;
   }
 }

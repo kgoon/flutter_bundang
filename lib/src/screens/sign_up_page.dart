@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bundang/src/models/sign_in_model.dart';
+import 'package:flutter_bundang/src/screens/home_page.dart';
 import 'package:flutter_bundang/src/screens/landing_page.dart';
 import 'package:flutter_bundang/src/screens/login_page.dart';
 import 'package:flutter_bundang/src/services/auth.dart';
@@ -8,6 +9,7 @@ import 'package:flutter_bundang/src/widgets/custom_button_widget.dart';
 import 'package:flutter_bundang/src/widgets/custom_form_widget.dart';
 import 'package:flutter_bundang/src/widgets/custom_text_widget.dart';
 import 'package:flutter_bundang/src/widgets/platform_exception_alert_dialog.dart';
+import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
 
 class SignUpPage extends StatefulWidget {
@@ -16,7 +18,7 @@ class SignUpPage extends StatefulWidget {
   SignUpPage({@required this.model});
 
   static Widget create(BuildContext context) {
-    final AuthBase auth = Provider.of<AuthFromFireBase>(context, listen: false);
+    final AuthBase auth = Provider.of<AuthFromCustom>(context, listen: false);
     return ChangeNotifierProvider<SignInModel>(
       create: (context) => SignInModel(
         auth: auth,
@@ -38,6 +40,7 @@ class _SignUpPageState extends State<SignUpPage> with CustomFormFieldWidget {
 
   final TextEditingController emailController = TextEditingController();
   final TextEditingController passwordController = TextEditingController();
+  final TextEditingController birthdayController = TextEditingController();
 
   SignInModel get model => widget.model;
 
@@ -68,13 +71,14 @@ class _SignUpPageState extends State<SignUpPage> with CustomFormFieldWidget {
                     // wrapInputField(
                     //   passwordInputField(context),
                     // ),
-                    // wrapInputField(
-                    //   birthdayInputField(
-                    //     context: context,
-                    //     selectedDate: _selectedDate,
-                    //     onClick: this._onClickInputField,
-                    //   ),
-                    // ),
+                    wrapInputField(
+                      birthdayInputField(
+                        model: model,
+                        context: context,
+                        controller: birthdayController,
+                        onClick: _onClickInputField,
+                      ),
+                    ),
                     Padding(
                       padding: const EdgeInsets.only(top: 20.0),
                       child: Transform.scale(
@@ -91,7 +95,7 @@ class _SignUpPageState extends State<SignUpPage> with CustomFormFieldWidget {
                 Padding(
                   padding: const EdgeInsets.only(top: 30.0),
                   child: CustomButtonWidget(
-                    onSubmit: model.isChecked ? _submit : null,
+                    onSubmit: model.isChecked ? _submitWithCustom : null,
                     backgroundColor: Colors.teal,
                     title: 'SIGN UP',
                   ),
@@ -110,16 +114,15 @@ class _SignUpPageState extends State<SignUpPage> with CustomFormFieldWidget {
     );
   }
 
-  // void _onClickInputField() {
-  //   FocusScope.of(context).requestFocus(FocusNode());
-  //   selectDate(context).then((onValue) {
-  //     if (onValue != null) {
-  //       setState(() {
-  //         _selectedDate = onValue;
-  //       });
-  //     }
-  //   });
-  // }
+  void _onClickInputField() {
+    FocusScope.of(context).requestFocus(FocusNode());
+    selectDate(context).then((onValue) {
+      if (onValue != null) {
+        birthdayController.text = DateFormat('yMMd', 'ko').format(onValue);
+        model.updateBirthday(birthdayController.text);
+      }
+    });
+  }
 
   void _pushToLogin() {
     Navigator.push(
@@ -129,9 +132,9 @@ class _SignUpPageState extends State<SignUpPage> with CustomFormFieldWidget {
         ));
   }
 
-  Future<void> _submit() async {
+  Future<void> _submitWithFirebase() async {
     try {
-      await model.submit();
+      await model.auth.createUserWithEmail(model.email, model.password);
       Navigator.of(context).pushReplacement(MaterialPageRoute(
         builder: (context) => LandingPage(),
       ));
@@ -144,10 +147,23 @@ class _SignUpPageState extends State<SignUpPage> with CustomFormFieldWidget {
     }
   }
 
+  Future<void> _submitWithCustom() async {
+    try {
+      await model.auth.createUserWithEmail(model.email, model.password,
+          birthday: model.birthday);
+      Navigator.of(context).push(MaterialPageRoute(
+        builder: (context) => HomePage(),
+      ));
+    } catch (e) {
+      print(e);
+    }
+  }
+
   @override
   void dispose() {
     emailController.dispose();
     passwordController.dispose();
+    birthdayController.dispose();
     super.dispose();
   }
 }
