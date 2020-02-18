@@ -16,7 +16,7 @@ class LoginPage extends StatefulWidget {
   const LoginPage({@required this.model});
 
   static Widget create(BuildContext context) {
-    final Auth auth = Provider.of<Auth>(context, listen: false);
+    final AuthBase auth = Provider.of<AuthFromFireBase>(context, listen: false);
     return ChangeNotifierProvider<SignInModel>(
       create: (context) => SignInModel(
         auth: auth,

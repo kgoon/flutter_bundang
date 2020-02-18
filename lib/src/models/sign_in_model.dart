@@ -3,7 +3,7 @@ import 'package:flutter_bundang/src/services/auth.dart';
 import 'package:flutter_bundang/src/widgets/validators.dart';
 
 class SignInModel with ChangeNotifier, UserValidators {
-  final Auth auth;
+  final AuthBase auth;
   String email;
   String password;
   bool isChecked;
