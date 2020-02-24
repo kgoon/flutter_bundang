@@ -1,32 +1,26 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
-import 'package:flutter_bundang/src/models/sign_in_model.dart';
+import 'package:flutter_bundang/src/models/sign_up_model.dart';
 import 'package:flutter_bundang/src/screens/home_page.dart';
-import 'package:flutter_bundang/src/screens/landing_page.dart';
 import 'package:flutter_bundang/src/screens/login_page.dart';
 import 'package:flutter_bundang/src/services/auth.dart';
 import 'package:flutter_bundang/src/widgets/custom_button_widget.dart';
 import 'package:flutter_bundang/src/widgets/custom_form_widget.dart';
 import 'package:flutter_bundang/src/widgets/custom_text_widget.dart';
-import 'package:flutter_bundang/src/widgets/platform_exception_alert_dialog.dart';
 import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
 
 class SignUpPage extends StatefulWidget {
-  final SignInModel model;
+  final Auth auth;
+  final SignUpModel model;
 
-  SignUpPage({@required this.model});
+  SignUpPage({@required this.auth, @required this.model});
 
   static Widget create(BuildContext context) {
-    final AuthBase auth = Provider.of<AuthFromCustom>(context, listen: false);
-    return ChangeNotifierProvider<SignInModel>(
-      create: (context) => SignInModel(
+    final Auth auth = Provider.of<Auth>(context, listen: false);
+    return Consumer<SignUpModel>(
+      builder: (context, model, _) => SignUpPage(
         auth: auth,
-      ),
-      child: Consumer<SignInModel>(
-        builder: (context, model, _) => SignUpPage(
-          model: model,
-        ),
+        model: model,
       ),
     );
   }
@@ -36,13 +30,13 @@ class SignUpPage extends StatefulWidget {
 }
 
 class _SignUpPageState extends State<SignUpPage> with CustomFormFieldWidget {
-  // DateTime _selectedDate;
-
   final TextEditingController emailController = TextEditingController();
   final TextEditingController passwordController = TextEditingController();
+  final TextEditingController rePasswordController = TextEditingController();
   final TextEditingController birthdayController = TextEditingController();
 
-  SignInModel get model => widget.model;
+  Auth get auth => widget.auth;
+  SignUpModel get model => widget.model;
 
   @override
   Widget build(BuildContext context) {
@@ -68,9 +62,10 @@ class _SignUpPageState extends State<SignUpPage> with CustomFormFieldWidget {
                     wrapInputField(
                       passwordInputField(context, passwordController, model),
                     ),
-                    // wrapInputField(
-                    //   passwordInputField(context),
-                    // ),
+                    wrapInputField(
+                      rePasswordInputField(
+                          context, rePasswordController, model),
+                    ),
                     wrapInputField(
                       birthdayInputField(
                         model: model,
@@ -95,7 +90,7 @@ class _SignUpPageState extends State<SignUpPage> with CustomFormFieldWidget {
                 Padding(
                   padding: const EdgeInsets.only(top: 30.0),
                   child: CustomButtonWidget(
-                    onSubmit: model.isChecked ? _submitWithCustom : null,
+                    onSubmit: model.isChecked ? _signUp : null,
                     backgroundColor: Colors.teal,
                     title: 'SIGN UP',
                   ),
@@ -132,24 +127,11 @@ class _SignUpPageState extends State<SignUpPage> with CustomFormFieldWidget {
         ));
   }
 
-  Future<void> _submitWithFirebase() async {
+  Future<void> _signUp() async {
     try {
-      await model.auth.createUserWithEmail(model.email, model.password);
-      Navigator.of(context).pushReplacement(MaterialPageRoute(
-        builder: (context) => LandingPage(),
-      ));
-    } on PlatformException catch (e) {
-      PlatformExceptionAlertDialog(
-        title: '에러!',
-        e: e,
-        defaultActionText: '확인',
-      ).show(context);
-    }
-  }
-
-  Future<void> _submitWithCustom() async {
-    try {
-      await model.auth.createUserWithEmail(model.email, model.password,
+      await auth.createUserWithEmail(
+          email: model.email,
+          password: model.password,
           birthday: model.birthday);
       Navigator.of(context).push(MaterialPageRoute(
         builder: (context) => HomePage(),
@@ -163,6 +145,7 @@ class _SignUpPageState extends State<SignUpPage> with CustomFormFieldWidget {
   void dispose() {
     emailController.dispose();
     passwordController.dispose();
+    rePasswordController.dispose();
     birthdayController.dispose();
     super.dispose();
   }

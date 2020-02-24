@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bundang/src/models/sign_in_model.dart';
+import 'package:flutter_bundang/src/models/sign_up_model.dart';
 import 'package:flutter_bundang/src/screens/landing_page.dart';
 import 'package:flutter_bundang/src/services/auth.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
@@ -18,8 +20,18 @@ class MyApp extends StatelessWidget {
           currentFocus.unfocus();
         }
       },
-      child: Provider<AuthFromCustom>(
-        create: (context) => AuthFromCustom(),
+      child: MultiProvider(
+        providers: [
+          Provider<Auth>(
+            create: (context) => Auth(),
+          ),
+          ChangeNotifierProvider<SignUpModel>(
+            create: (context) => SignUpModel(),
+          ),
+          ChangeNotifierProvider<SignInModel>(
+            create: (context) => SignInModel(),
+          ),
+        ],
         child: MaterialApp(
           debugShowCheckedModeBanner: false,
           localizationsDelegates: [

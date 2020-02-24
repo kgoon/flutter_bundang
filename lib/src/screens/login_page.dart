@@ -1,31 +1,25 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:flutter_bundang/src/models/sign_in_model.dart';
 import 'package:flutter_bundang/src/screens/home_page.dart';
-import 'package:flutter_bundang/src/screens/landing_page.dart';
 import 'package:flutter_bundang/src/screens/sign_up_page.dart';
 import 'package:flutter_bundang/src/services/auth.dart';
 import 'package:flutter_bundang/src/widgets/custom_button_widget.dart';
 import 'package:flutter_bundang/src/widgets/custom_form_widget.dart';
 import 'package:flutter_bundang/src/widgets/custom_text_widget.dart';
-import 'package:flutter_bundang/src/widgets/platform_exception_alert_dialog.dart';
 import 'package:provider/provider.dart';
 
 class LoginPage extends StatefulWidget {
+  final Auth auth;
   final SignInModel model;
 
-  const LoginPage({@required this.model});
+  LoginPage({@required this.auth, @required this.model});
 
   static Widget create(BuildContext context) {
-    final AuthBase auth = Provider.of<AuthFromCustom>(context, listen: false);
-    return ChangeNotifierProvider<SignInModel>(
-      create: (context) => SignInModel(
+    final Auth auth = Provider.of<Auth>(context, listen: false);
+    return Consumer<SignInModel>(
+      builder: (context, model, _) => LoginPage(
         auth: auth,
-      ),
-      child: Consumer<SignInModel>(
-        builder: (context, model, _) => LoginPage(
-          model: model,
-        ),
+        model: model,
       ),
     );
   }
@@ -38,6 +32,7 @@ class _LoginPageState extends State<LoginPage> with CustomFormFieldWidget {
   final TextEditingController emailController = TextEditingController();
   final TextEditingController passwordController = TextEditingController();
 
+  Auth get auth => widget.auth;
   SignInModel get model => widget.model;
 
   @override
@@ -73,7 +68,7 @@ class _LoginPageState extends State<LoginPage> with CustomFormFieldWidget {
                   child: CustomButtonWidget(
                     backgroundColor: Colors.teal,
                     title: 'SIGN IN',
-                    onSubmit: () => _loginWithCustom(context),
+                    onSubmit: () => _login(context),
                   ),
                 ),
                 wrapInputField(
@@ -99,25 +94,9 @@ class _LoginPageState extends State<LoginPage> with CustomFormFieldWidget {
     );
   }
 
-  void _loginWithFirebase(BuildContext context) async {
+  void _login(BuildContext context) async {
     try {
-      await model.auth.signInWithEmail(model.email, model.password);
-
-      Navigator.of(context).pushReplacement(MaterialPageRoute(
-        builder: (context) => LandingPage(),
-      ));
-    } on PlatformException catch (e) {
-      PlatformExceptionAlertDialog(
-        title: '에러!',
-        e: e,
-        defaultActionText: '확인',
-      ).show(context);
-    }
-  }
-
-  void _loginWithCustom(BuildContext context) async {
-    try {
-      await model.auth.signInWithEmail(model.email, model.password);
+      await auth.signInWithEmail(model.email, model.password);
       Navigator.of(context).pushReplacement(MaterialPageRoute(
         builder: (context) => HomePage(),
       ));

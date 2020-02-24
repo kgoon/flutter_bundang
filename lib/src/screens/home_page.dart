@@ -40,7 +40,7 @@ class HomePage extends StatelessWidget {
 
   Future<void> _signOut(BuildContext context) async {
     try {
-      final auth = Provider.of<AuthFromFireBase>(context, listen: false);
+      final auth = Provider.of<Auth>(context, listen: false);
       await auth.signOut();
       Navigator.of(context).pushReplacement(
         MaterialPageRoute(
