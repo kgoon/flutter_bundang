@@ -32,6 +32,8 @@ class _LoginPageState extends State<LoginPage> with CustomFormFieldWidget {
   final TextEditingController emailController = TextEditingController();
   final TextEditingController passwordController = TextEditingController();
 
+  GlobalKey<FormState> _formKey = GlobalKey<FormState>();
+
   Auth get auth => widget.auth;
   SignInModel get model => widget.model;
 
@@ -51,6 +53,7 @@ class _LoginPageState extends State<LoginPage> with CustomFormFieldWidget {
                   title: 'Awesome App',
                 ),
                 Form(
+                  key: _formKey,
                   child: Column(
                     children: <Widget>[
                       Padding(
@@ -94,14 +97,18 @@ class _LoginPageState extends State<LoginPage> with CustomFormFieldWidget {
     );
   }
 
-  void _login(BuildContext context) async {
-    try {
-      await auth.signInWithEmail(model.email, model.password);
-      Navigator.of(context).pushReplacement(MaterialPageRoute(
-        builder: (context) => HomePage(),
-      ));
-    } catch (e) {
-      print(e);
+  Future<void> _login(BuildContext context) async {
+    if (_formKey.currentState.validate()) {
+      try {
+        await auth.signInWithEmail(model.email, model.password);
+        Navigator.of(context).pushReplacement(MaterialPageRoute(
+          builder: (context) => HomePage(),
+        ));
+      } catch (e) {
+        print(e);
+      }
+    } else {
+      model.changeAutoVal(true);
     }
   }
 

@@ -35,6 +35,8 @@ class _SignUpPageState extends State<SignUpPage> with CustomFormFieldWidget {
   final TextEditingController rePasswordController = TextEditingController();
   final TextEditingController birthdayController = TextEditingController();
 
+  GlobalKey<FormState> _formKey = GlobalKey<FormState>();
+
   Auth get auth => widget.auth;
   SignUpModel get model => widget.model;
 
@@ -51,41 +53,44 @@ class _SignUpPageState extends State<SignUpPage> with CustomFormFieldWidget {
                 HeadingOneText(
                   title: 'Awesome App',
                 ),
-                Column(
-                  children: <Widget>[
-                    Padding(
-                      padding: EdgeInsets.only(
-                        top: 80.0,
+                Form(
+                  key: _formKey,
+                  child: Column(
+                    children: <Widget>[
+                      Padding(
+                        padding: EdgeInsets.only(
+                          top: 80.0,
+                        ),
+                        child: emailInputField(context, emailController, model),
                       ),
-                      child: emailInputField(context, emailController, model),
-                    ),
-                    wrapInputField(
-                      passwordInputField(context, passwordController, model),
-                    ),
-                    wrapInputField(
-                      rePasswordInputField(
-                          context, rePasswordController, model),
-                    ),
-                    wrapInputField(
-                      birthdayInputField(
-                        model: model,
-                        context: context,
-                        controller: birthdayController,
-                        onClick: _onClickInputField,
+                      wrapInputField(
+                        passwordInputField(context, passwordController, model),
                       ),
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.only(top: 20.0),
-                      child: Transform.scale(
-                        scale: 1.06,
-                        child: checkBoxField(
+                      wrapInputField(
+                        rePasswordInputField(
+                            context, rePasswordController, model),
+                      ),
+                      wrapInputField(
+                        birthdayInputField(
+                          model: model,
                           context: context,
-                          ifChecked: model.isChecked,
-                          onChecked: model.changeCheckBoxValue,
+                          controller: birthdayController,
+                          onClick: _onClickInputField,
                         ),
                       ),
-                    ),
-                  ],
+                      Padding(
+                        padding: const EdgeInsets.only(top: 20.0),
+                        child: Transform.scale(
+                          scale: 1.06,
+                          child: checkBoxField(
+                            context: context,
+                            ifChecked: model.isChecked,
+                            onChecked: model.changeCheckBoxValue,
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
                 ),
                 Padding(
                   padding: const EdgeInsets.only(top: 30.0),
@@ -128,16 +133,20 @@ class _SignUpPageState extends State<SignUpPage> with CustomFormFieldWidget {
   }
 
   Future<void> _signUp() async {
-    try {
-      await auth.createUserWithEmail(
-          email: model.email,
-          password: model.password,
-          birthday: model.birthday);
-      Navigator.of(context).push(MaterialPageRoute(
-        builder: (context) => HomePage(),
-      ));
-    } catch (e) {
-      print(e);
+    if (_formKey.currentState.validate()) {
+      try {
+        await auth.createUserWithEmail(
+            email: model.email,
+            password: model.password,
+            birthday: model.birthday);
+        Navigator.of(context).push(MaterialPageRoute(
+          builder: (context) => HomePage(),
+        ));
+      } catch (e) {
+        print(e);
+      }
+    } else {
+      model.changeAutoVal(true);
     }
   }
 

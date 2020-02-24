@@ -4,8 +4,9 @@ import 'custom_text_widget.dart';
 class CustomFormFieldWidget {
   Widget emailInputField(
       BuildContext context, TextEditingController controller, model) {
-    return TextField(
+    return TextFormField(
       controller: controller,
+      autovalidate: model.autoVal,
       decoration: InputDecoration(
         labelText: 'email',
         labelStyle: TextStyle(
@@ -14,14 +15,16 @@ class CustomFormFieldWidget {
       ),
       autocorrect: false,
       keyboardType: TextInputType.emailAddress,
+      validator: model.validateEmail,
       onChanged: model.updateEmail,
     );
   }
 
   Widget passwordInputField(
       BuildContext context, TextEditingController controller, model) {
-    return TextField(
+    return TextFormField(
       controller: controller,
+      autovalidate: model.autoVal,
       decoration: InputDecoration(
         labelText: 'password',
         labelStyle: TextStyle(
@@ -30,14 +33,16 @@ class CustomFormFieldWidget {
       ),
       autocorrect: false,
       obscureText: true,
+      validator: model.validatePassword,
       onChanged: model.updatePassword,
     );
   }
 
   Widget rePasswordInputField(
       BuildContext context, TextEditingController controller, model) {
-    return TextField(
+    return TextFormField(
       controller: controller,
+      autovalidate: model.autoVal,
       decoration: InputDecoration(
         labelText: 'password 확인',
         labelStyle: TextStyle(
@@ -46,6 +51,7 @@ class CustomFormFieldWidget {
       ),
       autocorrect: false,
       obscureText: true,
+      validator: model.validateRePassword,
       onChanged: model.updateRePassword,
     );
   }
@@ -55,14 +61,16 @@ class CustomFormFieldWidget {
       BuildContext context,
       TextEditingController controller,
       Function onClick}) {
-    return TextField(
+    return TextFormField(
       controller: controller,
+      autovalidate: model.autoVal,
       decoration: InputDecoration(
         labelText: 'birthday',
         labelStyle: TextStyle(
           fontSize: responsiveTextSize(context, 16.0, 26.0),
         ),
       ),
+      validator: model.validateBirthday,
       onTap: onClick,
     );
   }
