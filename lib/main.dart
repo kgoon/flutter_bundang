@@ -18,8 +18,8 @@ class MyApp extends StatelessWidget {
           currentFocus.unfocus();
         }
       },
-      child: Provider<Auth>(
-        create: (context) => Auth(),
+      child: Provider<AuthFromCustom>(
+        create: (context) => AuthFromCustom(),
         child: MaterialApp(
           debugShowCheckedModeBanner: false,
           localizationsDelegates: [

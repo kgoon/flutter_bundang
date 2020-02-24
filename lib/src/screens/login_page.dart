@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bundang/src/models/sign_in_model.dart';
+import 'package:flutter_bundang/src/screens/home_page.dart';
 import 'package:flutter_bundang/src/screens/landing_page.dart';
 import 'package:flutter_bundang/src/screens/sign_up_page.dart';
 import 'package:flutter_bundang/src/services/auth.dart';
@@ -16,7 +17,7 @@ class LoginPage extends StatefulWidget {
   const LoginPage({@required this.model});
 
   static Widget create(BuildContext context) {
-    final Auth auth = Provider.of<Auth>(context, listen: false);
+    final AuthBase auth = Provider.of<AuthFromCustom>(context, listen: false);
     return ChangeNotifierProvider<SignInModel>(
       create: (context) => SignInModel(
         auth: auth,
@@ -72,7 +73,7 @@ class _LoginPageState extends State<LoginPage> with CustomFormFieldWidget {
                   child: CustomButtonWidget(
                     backgroundColor: Colors.teal,
                     title: 'SIGN IN',
-                    onSubmit: () => _login(context),
+                    onSubmit: () => _loginWithCustom(context),
                   ),
                 ),
                 wrapInputField(
@@ -98,9 +99,10 @@ class _LoginPageState extends State<LoginPage> with CustomFormFieldWidget {
     );
   }
 
-  void _login(BuildContext context) async {
+  void _loginWithFirebase(BuildContext context) async {
     try {
-      await model.login();
+      await model.auth.signInWithEmail(model.email, model.password);
+
       Navigator.of(context).pushReplacement(MaterialPageRoute(
         builder: (context) => LandingPage(),
       ));
@@ -110,6 +112,17 @@ class _LoginPageState extends State<LoginPage> with CustomFormFieldWidget {
         e: e,
         defaultActionText: '확인',
       ).show(context);
+    }
+  }
+
+  void _loginWithCustom(BuildContext context) async {
+    try {
+      await model.auth.signInWithEmail(model.email, model.password);
+      Navigator.of(context).pushReplacement(MaterialPageRoute(
+        builder: (context) => HomePage(),
+      ));
+    } catch (e) {
+      print(e);
     }
   }
 

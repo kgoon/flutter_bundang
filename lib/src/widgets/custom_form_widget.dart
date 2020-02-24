@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bundang/src/models/sign_in_model.dart';
-import 'package:intl/intl.dart';
 
 import 'custom_text_widget.dart';
 
@@ -39,12 +38,14 @@ class CustomFormFieldWidget {
   }
 
   Widget birthdayInputField(
-      {DateTime selectedDate, BuildContext context, Function onClick}) {
+      {SignInModel model,
+      BuildContext context,
+      TextEditingController controller,
+      Function onClick}) {
     return TextField(
+      controller: controller,
       decoration: InputDecoration(
-        labelText: selectedDate == null
-            ? 'birthday'
-            : DateFormat.yMd('ko').format(selectedDate),
+        labelText: 'birthday',
         labelStyle: TextStyle(
           fontSize: responsiveTextSize(context, 16.0, 26.0),
         ),
