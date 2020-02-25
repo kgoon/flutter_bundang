@@ -108,6 +108,7 @@ class _SignUpPageState extends State<SignUpPage> with CustomFormFieldWidget {
 
   void _pushToLogin() {
     model.changeAutoVal(false);
+    model.changeCheckBoxValue(false);
     Navigator.push(
       context,
       MaterialPageRoute(
@@ -127,6 +128,12 @@ class _SignUpPageState extends State<SignUpPage> with CustomFormFieldWidget {
         model.changeAutoVal(false);
         model.changeCheckBoxValue(false);
         Navigator.popUntil(context, (route) => route.isFirst);
+      } else {
+        showAlertDialog(
+          context: context,
+          title: '에러',
+          content: auth.getErrorMsg(),
+        );
       }
     } else {
       model.changeAutoVal(true);

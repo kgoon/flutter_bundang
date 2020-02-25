@@ -96,6 +96,12 @@ class _LoginPageState extends State<LoginPage> with CustomFormFieldWidget {
       if (authResult) {
         model.changeAutoVal(false);
         Navigator.popUntil(context, (route) => route.isFirst);
+      } else {
+        showAlertDialog(
+          context: context,
+          title: '에러',
+          content: auth.getErrorMsg(),
+        );
       }
     } else {
       model.changeAutoVal(true);

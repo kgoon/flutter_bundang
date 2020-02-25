@@ -99,4 +99,28 @@ class CustomFormFieldWidget {
       controlAffinity: ListTileControlAffinity.leading,
     );
   }
+
+  void showAlertDialog(
+      {@required BuildContext context,
+      @required String title,
+      @required String content}) async {
+    await showDialog(
+      context: context,
+      barrierDismissible: false,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: Text(title),
+          content: Text(content),
+          actions: <Widget>[
+            FlatButton(
+              child: Text('OK'),
+              onPressed: () {
+                Navigator.pop(context, "OK");
+              },
+            ),
+          ],
+        );
+      },
+    );
+  }
 }

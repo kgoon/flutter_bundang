@@ -9,6 +9,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 
 class Auth with ChangeNotifier {
   User _user;
+  String _errorMsg = '';
 
   Auth() {
     _currentUser();
@@ -54,9 +55,11 @@ class Auth with ChangeNotifier {
         setUser(_fromCustom(jsonData['token']));
         return true;
       }
+      jsonData = json.decode(authResult.body);
+      setErrorMsg(jsonData["message"]);
       return false;
-    } on Exception catch (e) {
-      e.toString();
+    } catch (e) {
+      setErrorMsg('서버가 응답하지 않습니다');
       return false;
     }
   }
@@ -79,9 +82,11 @@ class Auth with ChangeNotifier {
         setUser(_fromCustom(jsonData['token']));
         return true;
       }
+      jsonData = json.decode(authResult.body);
+      setErrorMsg(jsonData["message"]);
       return false;
-    } on Exception catch (e) {
-      e.toString();
+    } catch (e) {
+      setErrorMsg('서버가 응답하지 않습니다');
       return false;
     }
   }
@@ -94,5 +99,24 @@ class Auth with ChangeNotifier {
 
   User _fromCustom(String token) {
     return User(userToken: token);
+  }
+
+  // 서버로 부터 수신한 메세지 설정
+  setErrorMsg(String msg) {
+    if (msg.contains('information')) {
+      msg = '가입된 이메일이 아닙니다';
+    } else if (msg.contains('password')) {
+      msg = '패스워드가 잘못 되었습니다';
+    } else if (msg.contains('Already')) {
+      msg = '이미 가입된 이메일 입니다';
+    }
+    _errorMsg = msg;
+  }
+
+  // 서버로 부터 수신한 메세지 반환하고 삭제
+  getErrorMsg() {
+    String msg = _errorMsg;
+    _errorMsg = null;
+    return msg;
   }
 }
