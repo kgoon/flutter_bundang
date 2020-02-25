@@ -89,6 +89,7 @@ class _LoginPageState extends State<LoginPage> with CustomFormFieldWidget {
   }
 
   Future<void> _login(BuildContext context) async {
+    FocusScope.of(context).requestFocus(new FocusNode());
     if (_formKey.currentState.validate()) {
       bool authResult = await auth.signInWithEmail(model.email, model.password);
       if (authResult) {

@@ -116,6 +116,7 @@ class _SignUpPageState extends State<SignUpPage> with CustomFormFieldWidget {
   }
 
   Future<void> _signUp() async {
+    FocusScope.of(context).requestFocus(new FocusNode());
     if (_formKey.currentState.validate()) {
       bool authResult = await auth.createUserWithEmail(
           email: model.email,
