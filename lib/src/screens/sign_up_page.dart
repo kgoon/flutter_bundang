@@ -122,6 +122,7 @@ class _SignUpPageState extends State<SignUpPage> with CustomFormFieldWidget {
           password: model.password,
           birthday: model.birthday);
       if (authResult) {
+        model.changeAutoVal(false);
         Navigator.popUntil(context, (route) => route.isFirst);
       }
     } else {

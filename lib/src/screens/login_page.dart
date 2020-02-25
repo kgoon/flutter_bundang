@@ -92,6 +92,7 @@ class _LoginPageState extends State<LoginPage> with CustomFormFieldWidget {
     if (_formKey.currentState.validate()) {
       bool authResult = await auth.signInWithEmail(model.email, model.password);
       if (authResult) {
+        model.changeAutoVal(false);
         Navigator.popUntil(context, (route) => route.isFirst);
       }
     } else {
