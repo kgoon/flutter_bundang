@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bundang/src/models/sign_up_model.dart';
-import 'package:flutter_bundang/src/screens/home_page.dart';
 import 'package:flutter_bundang/src/screens/login_page.dart';
 import 'package:flutter_bundang/src/services/auth.dart';
 import 'package:flutter_bundang/src/widgets/custom_button_widget.dart';
@@ -16,7 +15,7 @@ class SignUpPage extends StatefulWidget {
   SignUpPage({@required this.auth, @required this.model});
 
   static Widget create(BuildContext context) {
-    final Auth auth = Provider.of<Auth>(context, listen: false);
+    final Auth auth = Provider.of<Auth>(context);
     return Consumer<SignUpModel>(
       builder: (context, model, _) => SignUpPage(
         auth: auth,
@@ -126,24 +125,23 @@ class _SignUpPageState extends State<SignUpPage> with CustomFormFieldWidget {
 
   void _pushToLogin() {
     Navigator.push(
-        context,
-        MaterialPageRoute(
-          builder: (context) => LoginPage.create(context),
-        ));
+      context,
+      MaterialPageRoute(
+        builder: (context) => LoginPage.create(context),
+      ),
+    );
   }
 
   Future<void> _signUp() async {
     if (_formKey.currentState.validate()) {
-      try {
-        await auth.createUserWithEmail(
-            email: model.email,
-            password: model.password,
-            birthday: model.birthday);
-        Navigator.of(context).push(MaterialPageRoute(
-          builder: (context) => HomePage(),
-        ));
-      } catch (e) {
-        print(e);
+      bool authResult = await auth.createUserWithEmail(
+          email: model.email,
+          password: model.password,
+          birthday: model.birthday);
+      if (authResult) {
+        // 회원가입과 로그인 페이지를 오가서 중첩됬을 경우
+        // pop대신 popUtil을 써서 Landing 페이지가 나올 때까지 pop 시킴
+        Navigator.popUntil(context, (route) => route.isFirst);
       }
     } else {
       model.changeAutoVal(true);

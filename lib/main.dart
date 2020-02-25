@@ -22,7 +22,7 @@ class MyApp extends StatelessWidget {
       },
       child: MultiProvider(
         providers: [
-          Provider<Auth>(
+          ChangeNotifierProvider<Auth>(
             create: (context) => Auth(),
           ),
           ChangeNotifierProvider<SignUpModel>(
@@ -46,7 +46,9 @@ class MyApp extends StatelessWidget {
           theme: ThemeData(
             primarySwatch: Colors.indigo,
           ),
-          home: LandingPage(),
+          home: Scaffold(
+            body: LandingPage(),
+          ),
         ),
       ),
     );

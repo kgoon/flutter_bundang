@@ -1,12 +1,18 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_bundang/src/screens/landing_page.dart';
 import 'package:flutter_bundang/src/services/auth.dart';
 import 'package:flutter_bundang/src/widgets/custom_button_widget.dart';
 import 'package:provider/provider.dart';
 
-class HomePage extends StatelessWidget {
+class HomePage extends StatefulWidget {
+  @override
+  _HomePageState createState() => _HomePageState();
+}
+
+class _HomePageState extends State<HomePage> {
+  Auth auth;
   @override
   Widget build(BuildContext context) {
+    auth = Provider.of<Auth>(context);
     return Scaffold(
       appBar: AppBar(),
       drawer: Drawer(
@@ -40,13 +46,7 @@ class HomePage extends StatelessWidget {
 
   Future<void> _signOut(BuildContext context) async {
     try {
-      final auth = Provider.of<Auth>(context, listen: false);
       await auth.signOut();
-      Navigator.of(context).pushReplacement(
-        MaterialPageRoute(
-          builder: (context) => LandingPage(),
-        ),
-      );
     } catch (e) {
       print(e.toString());
     }
