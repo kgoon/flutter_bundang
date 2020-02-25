@@ -80,6 +80,7 @@ class _LoginPageState extends State<LoginPage> with CustomFormFieldWidget {
   }
 
   void _pushToSignUp(BuildContext context) {
+    model.changeAutoVal(false);
     Navigator.push(
       context,
       MaterialPageRoute(

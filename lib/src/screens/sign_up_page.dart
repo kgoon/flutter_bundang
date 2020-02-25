@@ -107,6 +107,7 @@ class _SignUpPageState extends State<SignUpPage> with CustomFormFieldWidget {
   }
 
   void _pushToLogin() {
+    model.changeAutoVal(false);
     Navigator.push(
       context,
       MaterialPageRoute(
