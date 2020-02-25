@@ -9,22 +9,19 @@ class RootPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
+        child: Wrap(
+          direction: Axis.vertical,
+          verticalDirection: VerticalDirection.down,
+          crossAxisAlignment: WrapCrossAlignment.center,
           children: <Widget>[
             HeadingOneText(
               title: 'Awesome App',
             ),
-            Padding(
-              padding: EdgeInsets.only(
-                top: 80.0,
-              ),
-              child: CustomMaterialButton(
-                title: 'Sign up for account',
-                onSubmit: () {
-                  _pushToSignUp(context);
-                },
-              ),
+            CustomMaterialButton(
+              title: 'Sign up for account',
+              onSubmit: () {
+                _pushToSignUp(context);
+              },
             ),
             CustomMaterialButton(
               title: 'Already have account? Sign in',

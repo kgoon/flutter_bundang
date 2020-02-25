@@ -45,8 +45,10 @@ class _LoginPageState extends State<LoginPage> with CustomFormFieldWidget {
             30.0,
           ),
           child: SingleChildScrollView(
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            child: Wrap(
+              verticalDirection: VerticalDirection.down,
+              alignment: WrapAlignment.center,
+              runSpacing: 17.0,
               children: <Widget>[
                 HeadingOneText(
                   title: 'Awesome App',
@@ -55,29 +57,19 @@ class _LoginPageState extends State<LoginPage> with CustomFormFieldWidget {
                   key: _formKey,
                   child: Column(
                     children: <Widget>[
-                      Padding(
-                          padding: const EdgeInsets.only(top: 80.0),
-                          child:
-                              emailInputField(context, emailController, model)),
-                      wrapInputField(
-                        passwordInputField(context, passwordController, model),
-                      ),
+                      emailInputField(context, emailController, model),
+                      passwordInputField(context, passwordController, model),
                     ],
                   ),
                 ),
-                Padding(
-                  padding: EdgeInsets.only(top: 30.0),
-                  child: CustomButtonWidget(
-                    backgroundColor: Colors.teal,
-                    title: 'SIGN IN',
-                    onSubmit: () => _login(context),
-                  ),
+                CustomRaisedButton(
+                  backgroundColor: Colors.teal,
+                  title: 'SIGN IN',
+                  onSubmit: () => _login(context),
                 ),
-                wrapInputField(
-                  CustomMaterialButton(
-                    title: 'Sign up for account',
-                    onSubmit: () => _pushToSignUp(context),
-                  ),
+                CustomMaterialButton(
+                  title: 'Sign up for account',
+                  onSubmit: () => _pushToSignUp(context),
                 ),
               ],
             ),
@@ -100,8 +92,6 @@ class _LoginPageState extends State<LoginPage> with CustomFormFieldWidget {
     if (_formKey.currentState.validate()) {
       bool authResult = await auth.signInWithEmail(model.email, model.password);
       if (authResult) {
-        // 회원가입과 로그인 페이지를 오가서 중첩됬을 경우
-        // pop대신 popUtil을 써서 Landing 페이지가 나올 때까지 pop 시킴
         Navigator.popUntil(context, (route) => route.isFirst);
       }
     } else {

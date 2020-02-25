@@ -99,11 +99,4 @@ class CustomFormFieldWidget {
       controlAffinity: ListTileControlAffinity.leading,
     );
   }
-
-  Widget wrapInputField(Widget child) {
-    return Padding(
-      padding: EdgeInsets.only(top: 8.0),
-      child: child,
-    );
-  }
 }

@@ -46,8 +46,10 @@ class _SignUpPageState extends State<SignUpPage> with CustomFormFieldWidget {
         child: Padding(
           padding: const EdgeInsets.all(30.0),
           child: SingleChildScrollView(
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            child: Wrap(
+              verticalDirection: VerticalDirection.down,
+              alignment: WrapAlignment.center,
+              runSpacing: 10.0,
               children: <Widget>[
                 HeadingOneText(
                   title: 'Awesome App',
@@ -56,54 +58,35 @@ class _SignUpPageState extends State<SignUpPage> with CustomFormFieldWidget {
                   key: _formKey,
                   child: Column(
                     children: <Widget>[
-                      Padding(
-                        padding: EdgeInsets.only(
-                          top: 80.0,
-                        ),
-                        child: emailInputField(context, emailController, model),
-                      ),
-                      wrapInputField(
-                        passwordInputField(context, passwordController, model),
-                      ),
-                      wrapInputField(
-                        rePasswordInputField(
-                            context, rePasswordController, model),
-                      ),
-                      wrapInputField(
-                        birthdayInputField(
-                          model: model,
-                          context: context,
-                          controller: birthdayController,
-                          onClick: _onClickInputField,
-                        ),
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.only(top: 20.0),
-                        child: Transform.scale(
-                          scale: 1.06,
-                          child: checkBoxField(
-                            context: context,
-                            ifChecked: model.isChecked,
-                            onChecked: model.changeCheckBoxValue,
-                          ),
-                        ),
+                      emailInputField(context, emailController, model),
+                      passwordInputField(context, passwordController, model),
+                      rePasswordInputField(
+                          context, rePasswordController, model),
+                      birthdayInputField(
+                        model: model,
+                        context: context,
+                        controller: birthdayController,
+                        onClick: _onClickInputField,
                       ),
                     ],
                   ),
                 ),
-                Padding(
-                  padding: const EdgeInsets.only(top: 30.0),
-                  child: CustomButtonWidget(
-                    onSubmit: model.isChecked ? _signUp : null,
-                    backgroundColor: Colors.teal,
-                    title: 'SIGN UP',
+                Transform.scale(
+                  scale: 1.06,
+                  child: checkBoxField(
+                    context: context,
+                    ifChecked: model.isChecked,
+                    onChecked: model.changeCheckBoxValue,
                   ),
                 ),
-                wrapInputField(
-                  CustomMaterialButton(
-                    title: 'Already have account? Sign in',
-                    onSubmit: _pushToLogin,
-                  ),
+                CustomRaisedButton(
+                  onSubmit: model.isChecked ? _signUp : null,
+                  backgroundColor: Colors.teal,
+                  title: 'SIGN UP',
+                ),
+                CustomMaterialButton(
+                  title: 'Already have account? Sign in',
+                  onSubmit: _pushToLogin,
                 ),
               ],
             ),
@@ -139,8 +122,6 @@ class _SignUpPageState extends State<SignUpPage> with CustomFormFieldWidget {
           password: model.password,
           birthday: model.birthday);
       if (authResult) {
-        // 회원가입과 로그인 페이지를 오가서 중첩됬을 경우
-        // pop대신 popUtil을 써서 Landing 페이지가 나올 때까지 pop 시킴
         Navigator.popUntil(context, (route) => route.isFirst);
       }
     } else {
