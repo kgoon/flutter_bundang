@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bundang/src/business_logic/api_bloc.dart';
+import 'package:flutter_bundang/src/business_logic/api_provider.dart';
 import 'package:flutter_bundang/src/models/sign_up_model.dart';
 import 'package:flutter_bundang/src/screens/login_page.dart';
-import 'package:flutter_bundang/src/services/auth.dart';
 import 'package:flutter_bundang/src/widgets/custom_button_widget.dart';
 import 'package:flutter_bundang/src/widgets/custom_form_widget.dart';
 import 'package:flutter_bundang/src/widgets/custom_text_widget.dart';
@@ -9,16 +10,16 @@ import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
 
 class SignUpPage extends StatefulWidget {
-  final Auth auth;
+  final ApiBloc apiBloc;
   final SignUpModel model;
 
-  SignUpPage({@required this.auth, @required this.model});
+  SignUpPage({@required this.apiBloc, @required this.model});
 
   static Widget create(BuildContext context) {
-    final Auth auth = Provider.of<Auth>(context);
+    final ApiBloc apiBloc = Provider.of<ApiProvider>(context).bloc;
     return Consumer<SignUpModel>(
       builder: (context, model, _) => SignUpPage(
-        auth: auth,
+        apiBloc: apiBloc,
         model: model,
       ),
     );
@@ -36,7 +37,7 @@ class _SignUpPageState extends State<SignUpPage> with CustomFormFieldWidget {
 
   GlobalKey<FormState> _formKey = GlobalKey<FormState>();
 
-  Auth get auth => widget.auth;
+  ApiBloc get apiBloc => widget.apiBloc;
   SignUpModel get model => widget.model;
 
   @override
@@ -120,7 +121,7 @@ class _SignUpPageState extends State<SignUpPage> with CustomFormFieldWidget {
   Future<void> _signUp() async {
     FocusScope.of(context).requestFocus(new FocusNode());
     if (_formKey.currentState.validate()) {
-      bool authResult = await auth.createUserWithEmail(
+      bool authResult = await apiBloc.createUserWithEmail(
           email: model.email,
           password: model.password,
           birthday: model.birthday);
@@ -129,11 +130,11 @@ class _SignUpPageState extends State<SignUpPage> with CustomFormFieldWidget {
         model.changeCheckBoxValue(false);
         Navigator.popUntil(context, (route) => route.isFirst);
       } else {
-        showAlertDialog(
-          context: context,
-          title: '에러',
-          content: auth.getErrorMsg(),
-        );
+        // showAlertDialog(
+        //   context: context,
+        //   title: '에러',
+        //   content: auth.getErrorMsg(),
+        // );
       }
     } else {
       model.changeAutoVal(true);

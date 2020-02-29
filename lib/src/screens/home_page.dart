@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_bundang/src/services/auth.dart';
+import 'package:flutter_bundang/src/business_logic/api_bloc.dart';
+import 'package:flutter_bundang/src/business_logic/api_provider.dart';
 import 'package:flutter_bundang/src/widgets/custom_button_widget.dart';
 import 'package:provider/provider.dart';
 
@@ -9,10 +10,10 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  Auth auth;
+  ApiBloc apiBloc;
   @override
   Widget build(BuildContext context) {
-    auth = Provider.of<Auth>(context);
+    apiBloc = Provider.of<ApiProvider>(context).bloc;
     return Scaffold(
       appBar: AppBar(),
       drawer: Drawer(
@@ -46,7 +47,7 @@ class _HomePageState extends State<HomePage> {
 
   Future<void> _signOut(BuildContext context) async {
     try {
-      await auth.signOut();
+      await apiBloc.signOut();
     } catch (e) {
       print(e.toString());
     }

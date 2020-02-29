@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bundang/src/business_logic/api_provider.dart';
 import 'package:flutter_bundang/src/models/sign_in_model.dart';
 import 'package:flutter_bundang/src/models/sign_up_model.dart';
 import 'package:flutter_bundang/src/screens/landing_page.dart';
-import 'package:flutter_bundang/src/services/auth.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:provider/provider.dart';
 
@@ -22,14 +22,14 @@ class MyApp extends StatelessWidget {
       },
       child: MultiProvider(
         providers: [
-          ChangeNotifierProvider<Auth>(
-            create: (context) => Auth(),
+          ChangeNotifierProvider<ApiProvider>(
+            create: (BuildContext context) => ApiProvider(),
           ),
           ChangeNotifierProvider<SignUpModel>(
-            create: (context) => SignUpModel(),
+            create: (BuildContext context) => SignUpModel(),
           ),
           ChangeNotifierProvider<SignInModel>(
-            create: (context) => SignInModel(),
+            create: (BuildContext context) => SignInModel(),
           ),
         ],
         child: MaterialApp(

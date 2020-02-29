@@ -1,9 +1,26 @@
+import 'package:flutter/foundation.dart';
+
 class User {
   final String userToken;
-  User({this.userToken});
+  final String userName;
+  final String userEmail;
+  final String userImageUrl;
+  User({
+    @required this.userToken,
+    @required this.userEmail,
+    this.userName = '',
+    this.userImageUrl = '',
+  });
 
-  @override
-  String toString() {
-    return 'token: $userToken';
+  User copyWith({
+    String userName,
+    String userImageUrl,
+  }) {
+    return User(
+      userToken: this.userToken,
+      userEmail: this.userEmail,
+      userName: userName ?? this.userName,
+      userImageUrl: userImageUrl ?? this.userImageUrl,
+    );
   }
 }
