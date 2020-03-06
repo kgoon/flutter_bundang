@@ -1,31 +1,25 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
+import 'package:flutter_bundang/src/business_logic/api_bloc.dart';
+import 'package:flutter_bundang/src/business_logic/api_provider.dart';
 import 'package:flutter_bundang/src/models/sign_in_model.dart';
-import 'package:flutter_bundang/src/screens/home_page.dart';
-import 'package:flutter_bundang/src/screens/landing_page.dart';
 import 'package:flutter_bundang/src/screens/sign_up_page.dart';
-import 'package:flutter_bundang/src/services/auth.dart';
 import 'package:flutter_bundang/src/widgets/custom_button_widget.dart';
 import 'package:flutter_bundang/src/widgets/custom_form_widget.dart';
 import 'package:flutter_bundang/src/widgets/custom_text_widget.dart';
-import 'package:flutter_bundang/src/widgets/platform_exception_alert_dialog.dart';
 import 'package:provider/provider.dart';
 
 class LoginPage extends StatefulWidget {
+  final ApiBloc apiBloc;
   final SignInModel model;
 
-  const LoginPage({@required this.model});
+  LoginPage({@required this.apiBloc, @required this.model});
 
   static Widget create(BuildContext context) {
-    final AuthBase auth = Provider.of<AuthFromCustom>(context, listen: false);
-    return ChangeNotifierProvider<SignInModel>(
-      create: (context) => SignInModel(
-        auth: auth,
-      ),
-      child: Consumer<SignInModel>(
-        builder: (context, model, _) => LoginPage(
-          model: model,
-        ),
+    final ApiBloc apiBloc = Provider.of<ApiProvider>(context).bloc;
+    return Consumer<SignInModel>(
+      builder: (context, model, _) => LoginPage(
+        apiBloc: apiBloc,
+        model: model,
       ),
     );
   }
@@ -38,6 +32,9 @@ class _LoginPageState extends State<LoginPage> with CustomFormFieldWidget {
   final TextEditingController emailController = TextEditingController();
   final TextEditingController passwordController = TextEditingController();
 
+  GlobalKey<FormState> _formKey = GlobalKey<FormState>();
+
+  ApiBloc get apiBloc => widget.apiBloc;
   SignInModel get model => widget.model;
 
   @override
@@ -49,38 +46,31 @@ class _LoginPageState extends State<LoginPage> with CustomFormFieldWidget {
             30.0,
           ),
           child: SingleChildScrollView(
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            child: Wrap(
+              verticalDirection: VerticalDirection.down,
+              alignment: WrapAlignment.center,
+              runSpacing: 17.0,
               children: <Widget>[
                 HeadingOneText(
                   title: 'Awesome App',
                 ),
                 Form(
+                  key: _formKey,
                   child: Column(
                     children: <Widget>[
-                      Padding(
-                          padding: const EdgeInsets.only(top: 80.0),
-                          child:
-                              emailInputField(context, emailController, model)),
-                      wrapInputField(
-                        passwordInputField(context, passwordController, model),
-                      ),
+                      emailInputField(context, emailController, model),
+                      passwordInputField(context, passwordController, model),
                     ],
                   ),
                 ),
-                Padding(
-                  padding: EdgeInsets.only(top: 30.0),
-                  child: CustomButtonWidget(
-                    backgroundColor: Colors.teal,
-                    title: 'SIGN IN',
-                    onSubmit: () => _loginWithCustom(context),
-                  ),
+                CustomRaisedButton(
+                  backgroundColor: Colors.teal,
+                  title: 'SIGN IN',
+                  onSubmit: () => _login(context),
                 ),
-                wrapInputField(
-                  CustomMaterialButton(
-                    title: 'Sign up for account',
-                    onSubmit: () => _pushToSignUp(context),
-                  ),
+                CustomMaterialButton(
+                  title: 'Sign up for account',
+                  onSubmit: () => _pushToSignUp(context),
                 ),
               ],
             ),
@@ -91,6 +81,7 @@ class _LoginPageState extends State<LoginPage> with CustomFormFieldWidget {
   }
 
   void _pushToSignUp(BuildContext context) {
+    model.changeAutoVal(false);
     Navigator.push(
       context,
       MaterialPageRoute(
@@ -99,30 +90,23 @@ class _LoginPageState extends State<LoginPage> with CustomFormFieldWidget {
     );
   }
 
-  void _loginWithFirebase(BuildContext context) async {
-    try {
-      await model.auth.signInWithEmail(model.email, model.password);
-
-      Navigator.of(context).pushReplacement(MaterialPageRoute(
-        builder: (context) => LandingPage(),
-      ));
-    } on PlatformException catch (e) {
-      PlatformExceptionAlertDialog(
-        title: '에러!',
-        e: e,
-        defaultActionText: '확인',
-      ).show(context);
-    }
-  }
-
-  void _loginWithCustom(BuildContext context) async {
-    try {
-      await model.auth.signInWithEmail(model.email, model.password);
-      Navigator.of(context).pushReplacement(MaterialPageRoute(
-        builder: (context) => HomePage(),
-      ));
-    } catch (e) {
-      print(e);
+  Future<void> _login(BuildContext context) async {
+    FocusScope.of(context).requestFocus(new FocusNode());
+    if (_formKey.currentState.validate()) {
+      bool authResult = await apiBloc.signInWithEmail(
+          email: model.email, password: model.password);
+      if (authResult) {
+        model.changeAutoVal(false);
+        Navigator.popUntil(context, (route) => route.isFirst);
+      } else {
+        // showAlertDialog(
+        //   context: context,
+        //   title: '에러',
+        //   content: auth.getErrorMsg(),
+        // );
+      }
+    } else {
+      model.changeAutoVal(true);
     }
   }
 

@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bundang/src/widgets/custom_text_widget.dart';
 
-class CustomButtonWidget extends StatelessWidget {
+class CustomRaisedButton extends StatelessWidget {
   final String title;
   final Color backgroundColor;
   final Function onSubmit;
 
-  CustomButtonWidget(
+  CustomRaisedButton(
       {@required this.title,
       @required this.backgroundColor,
       @required this.onSubmit});

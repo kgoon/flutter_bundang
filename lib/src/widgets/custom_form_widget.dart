@@ -1,55 +1,76 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_bundang/src/models/sign_in_model.dart';
-
 import 'custom_text_widget.dart';
 
 class CustomFormFieldWidget {
-  Widget emailInputField(BuildContext context, TextEditingController controller,
-      SignInModel model) {
-    return TextField(
+  Widget emailInputField(
+      BuildContext context, TextEditingController controller, model) {
+    return TextFormField(
       controller: controller,
+      autovalidate: model.autoVal,
       decoration: InputDecoration(
-          labelText: 'email',
-          labelStyle: TextStyle(
-            fontSize: responsiveTextSize(context, 16.0, 26.0),
-          ),
-          errorText: model.emailErrorText),
+        labelText: 'email',
+        labelStyle: TextStyle(
+          fontSize: responsiveTextSize(context, 16.0, 26.0),
+        ),
+      ),
       autocorrect: false,
-      keyboardType: TextInputType.emailAddress,
+      // keyboardType: TextInputType.emailAddress,
+      validator: model.validateEmail,
       onChanged: model.updateEmail,
     );
   }
 
-  Widget passwordInputField(BuildContext context,
-      TextEditingController controller, SignInModel model) {
-    return TextField(
+  Widget passwordInputField(
+      BuildContext context, TextEditingController controller, model) {
+    return TextFormField(
       controller: controller,
+      autovalidate: model.autoVal,
       decoration: InputDecoration(
         labelText: 'password',
         labelStyle: TextStyle(
           fontSize: responsiveTextSize(context, 16.0, 26.0),
         ),
-        errorText: model.passwordErrorText,
       ),
       autocorrect: false,
       obscureText: true,
+      validator: model.validatePassword,
       onChanged: model.updatePassword,
     );
   }
 
+  Widget rePasswordInputField(
+      BuildContext context, TextEditingController controller, model) {
+    return TextFormField(
+      controller: controller,
+      autovalidate: model.autoVal,
+      decoration: InputDecoration(
+        labelText: 'password 확인',
+        labelStyle: TextStyle(
+          fontSize: responsiveTextSize(context, 16.0, 26.0),
+        ),
+      ),
+      autocorrect: false,
+      obscureText: true,
+      validator: model.validateRePassword,
+      onChanged: model.updateRePassword,
+    );
+  }
+
   Widget birthdayInputField(
-      {SignInModel model,
+      {model,
       BuildContext context,
       TextEditingController controller,
       Function onClick}) {
-    return TextField(
+    return TextFormField(
       controller: controller,
+      autovalidate: model.autoVal,
       decoration: InputDecoration(
         labelText: 'birthday',
         labelStyle: TextStyle(
           fontSize: responsiveTextSize(context, 16.0, 26.0),
         ),
       ),
+      validator: model.validateBirthday,
       onTap: onClick,
     );
   }
@@ -79,10 +100,27 @@ class CustomFormFieldWidget {
     );
   }
 
-  Widget wrapInputField(Widget child) {
-    return Padding(
-      padding: EdgeInsets.only(top: 8.0),
-      child: child,
+  void showAlertDialog(
+      {@required BuildContext context,
+      @required String title,
+      @required String content}) async {
+    await showDialog(
+      context: context,
+      barrierDismissible: false,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: Text(title),
+          content: Text(content),
+          actions: <Widget>[
+            FlatButton(
+              child: Text('OK'),
+              onPressed: () {
+                Navigator.pop(context, "OK");
+              },
+            ),
+          ],
+        );
+      },
     );
   }
 }

@@ -6,12 +6,15 @@ class HeadingOneText extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Text(
-      title,
-      style: TextStyle(
-        fontSize: responsiveTextSize(context, 30.0, 60.0),
-        fontWeight: FontWeight.bold,
-        color: Colors.grey[700],
+    return Padding(
+      padding: const EdgeInsets.only(bottom: 14.0),
+      child: Text(
+        title,
+        style: TextStyle(
+          fontSize: responsiveTextSize(context, 30.0, 60.0),
+          fontWeight: FontWeight.bold,
+          color: Colors.grey[700],
+        ),
       ),
     );
   }

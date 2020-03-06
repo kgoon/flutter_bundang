@@ -1,31 +1,35 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bundang/src/business_logic/api_provider.dart';
+import 'package:flutter_bundang/src/models/user_model.dart';
+import 'package:flutter_bundang/src/screens/home_page.dart';
+import 'package:flutter_bundang/src/screens/make_profile_page.dart';
 import 'package:flutter_bundang/src/screens/root_page.dart';
-import 'package:flutter_bundang/src/services/auth.dart';
 import 'package:provider/provider.dart';
 
-class LandingPage extends StatelessWidget {
+class LandingPage extends StatefulWidget {
+  @override
+  _LandingPageState createState() => _LandingPageState();
+}
+
+class _LandingPageState extends State<LandingPage> {
   @override
   Widget build(BuildContext context) {
-    final auth = Provider.of<AuthFromCustom>(context, listen: false);
-    return RootPage();
-    // return StreamBuilder<User>(
-    //   stream: auth.onAuthStateChanged,
-    //   builder: (BuildContext context, AsyncSnapshot<User> snapshot) {
-    //     if (snapshot.connectionState == ConnectionState.active) {
-    //       User user = snapshot.data;
-    //       if (user == null) {
-    //         return RootPage();
-    //       } else {
-    //         return HomePage();
-    //       }
-    //     } else {
-    //       return Scaffold(
-    //         body: Center(
-    //           child: CircularProgressIndicator(),
-    //         ),
-    //       );
-    //     }
-    //   },
-    // );
+    final apiBloc = Provider.of<ApiProvider>(context).bloc;
+    return StreamBuilder<User>(
+        stream: apiBloc.userSubject,
+        builder: (BuildContext context, AsyncSnapshot snapshot) {
+          if (snapshot.connectionState == ConnectionState.active) {
+            if (snapshot.data == null) {
+              return RootPage();
+            } else {
+              if (snapshot.data.userName == null) {
+                return MakeProfilePage();
+              }
+              return HomePage();
+            }
+          } else {
+            return Scaffold();
+          }
+        });
   }
 }
