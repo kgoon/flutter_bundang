@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bundang/src/business_logic/api_provider.dart';
 import 'package:flutter_bundang/src/models/user_model.dart';
 import 'package:flutter_bundang/src/screens/home_page.dart';
+import 'package:flutter_bundang/src/screens/make_profile_page.dart';
 import 'package:flutter_bundang/src/screens/root_page.dart';
 import 'package:provider/provider.dart';
 
@@ -21,10 +22,9 @@ class _LandingPageState extends State<LandingPage> {
             if (snapshot.data == null) {
               return RootPage();
             } else {
-              print(snapshot.data.userToken);
-              print(snapshot.data.userName);
-              print(snapshot.data.userEmail);
-              print(snapshot.data.userImageUrl);
+              if (snapshot.data.userName == null) {
+                return MakeProfilePage();
+              }
               return HomePage();
             }
           } else {

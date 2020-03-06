@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bundang/src/business_logic/api_bloc.dart';
 import 'package:flutter_bundang/src/business_logic/api_provider.dart';
 import 'package:flutter_bundang/src/widgets/custom_button_widget.dart';
+import 'package:flutter_bundang/src/widgets/custom_text_widget.dart';
 import 'package:provider/provider.dart';
 
 class HomePage extends StatefulWidget {
@@ -19,14 +20,47 @@ class _HomePageState extends State<HomePage> {
       drawer: Drawer(
         child: ListView(
           children: <Widget>[
+            SizedBox(
+              height: 30.0,
+            ),
             CircleAvatar(
               backgroundColor: Colors.indigo,
-              minRadius: 30,
+              child: ClipRRect(
+                borderRadius: BorderRadius.circular(60),
+                child: AspectRatio(
+                  aspectRatio: 1 / 1,
+                  child: Image.network(
+                    apiBloc.user.userImageUrl,
+                    fit: BoxFit.cover,
+                  ),
+                ),
+              ),
+              maxRadius: 54,
+            ),
+            SizedBox(
+              height: 12.0,
             ),
             DrawerHeader(
-              child: Text(
-                'User Mail',
-                textAlign: TextAlign.center,
+              child: Column(
+                children: <Widget>[
+                  Text(
+                    apiBloc.user.userName,
+                    style: TextStyle(
+                      fontSize: 22.0,
+                      color: Colors.black54,
+                    ),
+                  ),
+                  SizedBox(
+                    height: 7.0,
+                  ),
+                  Text(
+                    apiBloc.user.userEmail,
+                    style: TextStyle(
+                      fontSize: 18.0,
+                      color: Colors.black45,
+                    ),
+                  ),
+                ],
               ),
             ),
             CustomMaterialButton(
@@ -37,9 +71,17 @@ class _HomePageState extends State<HomePage> {
         ),
       ),
       body: Center(
-        child: CustomMaterialButton(
-          onSubmit: () => _signOut(context),
-          title: 'LogOut',
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: <Widget>[
+            HeadingOneText(
+              title: 'Welcom!',
+            ),
+            CustomMaterialButton(
+              onSubmit: () => _signOut(context),
+              title: 'LogOut',
+            ),
+          ],
         ),
       ),
     );

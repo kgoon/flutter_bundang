@@ -14,7 +14,7 @@ class CustomFormFieldWidget {
         ),
       ),
       autocorrect: false,
-      keyboardType: TextInputType.emailAddress,
+      // keyboardType: TextInputType.emailAddress,
       validator: model.validateEmail,
       onChanged: model.updateEmail,
     );
